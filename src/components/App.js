@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import TestComponent from "./TestComponent";
+import { connect } from "react-redux";
+import { record } from "./../actions";
+import Login from "./Login";
 
 class App extends Component {
     render() {
@@ -8,7 +10,7 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <div>
-                        <Route exact path="/test" component={TestComponent} />
+                        <Route exact path="/login" component={Login} />
                     </div>
                 </BrowserRouter>
             </div>
@@ -16,4 +18,6 @@ class App extends Component {
     }
 }
 
-export default App;
+export default connect(null, {
+    record
+})(App);
