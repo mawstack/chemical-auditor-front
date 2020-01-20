@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { record } from "./../actions";
+import { createRecord } from "./../actions";
+import { globalState } from "./../store";
 import Login from "./Login";
 
 class App extends Component {
@@ -18,6 +19,13 @@ class App extends Component {
     }
 }
 
-export default connect(null, {
-    record
+//(record-creation-specific connect invocation to be moved to specific relevant [i.e. record making] component later)
+const mapStateToProps = (globalState) => {
+    return {
+        records: globalState.records
+    }
+}
+
+export default connect(mapStateToProps, {
+    createRecord: createRecord
 })(App);

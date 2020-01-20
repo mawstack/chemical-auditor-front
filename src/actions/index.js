@@ -1,6 +1,9 @@
-export const record = () => {
+export const createRecord = (record = {}) => {
     return {
-        type: "RECORD",
-        payload: null
+        type: "CREATE_RECORD",
+        payload: record
     }
 }
+
+//api calling records = from here with thunk
+//form entry = via arguments
