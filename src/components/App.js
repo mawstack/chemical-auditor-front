@@ -3,7 +3,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { createRecord } from "./../actions";
 import { globalState } from "./../store";
-import Login from "./Login";
+// import Login from "./Login";
+import SignIn from "./Login";
 
 class App extends Component {
     render() {
@@ -11,8 +12,8 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <div>
-                        <Route exact path="/login" component={Login} />
-                        <Login />
+                        {/* <Route exact path="/login" component={Login} /> */}
+                        <SignIn />
                     </div>
                 </BrowserRouter>
             </div>
