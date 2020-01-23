@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 class Login extends Component {
     render() {
@@ -17,7 +18,11 @@ class Login extends Component {
                         <input type="password" id="password" name="password" />
                         <input type="submit" value="Sign in" />
                     </form>
-                    <Link to="/register">Register New Account</Link>
+                    <break>
+                    <Button variant="contained" color="primary">
+                        <Link to="/register">Register New Account</Link>
+                    </Button>
+                    </break>
                 </div>
             </>
         )
