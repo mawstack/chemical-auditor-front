@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function NavDrawer(props) {
+const NavDrawer = (props) => {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
