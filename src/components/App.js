@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { createRecord } from "./../actions";
-// import { globalState } from "./../store";
-import Login from "./Login";
-// import Navigation from "./shared/Navigation";
+import { globalState } from "./../store";
+import SignIn from "./Login";
 import NavDrawer from "./shared/NavDrawer";
+
 
 class App extends Component {
     render() {
@@ -18,6 +18,7 @@ class App extends Component {
                             <Route exact path="/login" component={Login} />
                         </div>
                     </>
+
                 </BrowserRouter>
             </div>
         )
