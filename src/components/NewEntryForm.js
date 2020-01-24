@@ -1,88 +1,122 @@
-import React from "react";
-import TextField from '@material-ui/core/TextField';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: 200,
-      },
-    },
-  }));
-
-  export default function NewEntryFrom() {
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
     
+  },
+}));
 
-    // state = {
-    //     startTime: "",
-    //     finishTime: "",
-    //     currentLat: "",
-    //     currentLong: "",
-    //     cropRow: "",
-    //     chemicalUsed: "",
-    //     WHP: "",
-    //     EHD: "",
-    //     rateApplied: "",
-    //     quantityApplied: "",
-    //     image: "",
-    //     equipmentMethodUsed: "",
-    //     speed: "",
-    //     deg: "",
-    //     notes: ""
-    // }
+export default function NewEntryForm() {
+  const classes = useStyles();
 
-
-    
-        const classes = useStyles();
-        return (
-
-        <form className={classes.root} noValidate autoComplete="off">  
-        <Grid container spacing={3}>
-            <Grid item xs={12}>
-            {/* <Paper className={classes.paper}>xs=12</Paper> */}
-            <TextField 
-            className={classes.paper}
-            required
-            id="outlined-secondary"
-            label="Required"
-            defaultValue="Start time"
-            variant="outlined"
-            />
-            </Grid>
-      
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={3}>
         
-            <Grid item xs={12}>
-            {/* <Paper className={classes.paper}>xs=12</Paper> */}
-            <TextField
-            required
-            id="outlined-secondary"
-            label="Required"
-            defaultValue="Finish time"
-            variant="outlined"
-            />
-            </Grid>
-      
 
-        
-            <Grid item xs={12}>
-            {/* <Paper className={classes.paper}>xs=12</Paper> */}
-            <TextField
-            required
-            id="outlined-secondary"
-            label="Required"
-            defaultValue="Current Location"
-            variant="outlined"
-            />
-            </Grid>
-   
+        {/* start time */}
+        <Grid item xs={12} sm={6}>
+          
+        <TextField
+          label="Start time"
+          id="outlined-margin-none"
+          defaultValue=""
+          className={classes.textField}
+          helperText="Some important text"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+        />
         </Grid>
-        </form>
-        );
-        }
-    
+
+        <Grid item xs={12} sm={6}>
+          {/* <Paper className={classes.paper}>xs=12 sm=6</Paper> */}
+          <TextField
+          label="Finish time"
+          id="outlined-margin-none"
+          defaultValue=""
+          className={classes.textField}
+          helperText="Some important text"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          
+        />
+        </Grid>
+
+        <Grid item xs={12} sm={6}>
+          {/* <Paper className={classes.paper}>xs=12 sm=6</Paper> */}
+          <TextField
+          label="Current Location"
+          id="outlined-margin-none"
+          defaultValue=""
+          className={classes.textField}
+          helperText="Some important text"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          
+        />
+        </Grid>
+
+        <Grid item xs={12} sm={6}>
+          {/* <Paper className={classes.paper}>xs=12 sm=6</Paper> */}
+          <TextField
+          label="Crop row"
+          id="outlined-margin-none"
+          defaultValue=""
+          className={classes.textField}
+          helperText="Some important text"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          
+        />
+        </Grid>
+
+          {/* chemical used */}
+          <Grid item xs={12} >
+          {/* <Paper className={classes.paper}>xs=12</Paper> */}
+            <TextField
+            id="outlined-full-width"
+            label="Chemical used"
+            style={{ margin: 8 }}
+            // placeholder=""
+            helperText="Full width!"
+            fullWidth
+            variant="outlined"
+            margin="normal"
+            // InputLabelProps={{
+            //     shrink: true,
+            // }}
+            />
+        </Grid>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+      </Grid>
+    </div>
+  );
+}
