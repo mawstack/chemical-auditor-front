@@ -6,6 +6,7 @@ import { globalState } from "./../store";
 // import Login from "./Login";
 import SignIn from "./Login";
 import NavBar from "./shared/NavBar"
+import NewEntryFrom from "./NewEntryForm";
 
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
                         {/* <Route exact path="/login" component={Login} /> */}
                         <NavBar />
                         <SignIn />
+                        <NewEntryFrom />
                     </div>
                 </BrowserRouter>
             </div>
