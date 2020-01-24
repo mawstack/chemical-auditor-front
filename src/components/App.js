@@ -2,18 +2,22 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { createRecord } from "./../actions";
-import { globalState } from "./../store";
+// import { globalState } from "./../store";
 import Login from "./Login";
+// import Navigation from "./shared/Navigation";
+import Navbar from "./shared/Navbar";
 
 class App extends Component {
     render() {
         return (
             <div>
                 <BrowserRouter>
-                    <div>
-                        <Route exact path="/login" component={Login} />
-                        <Login />
-                    </div>
+                    <>
+                        <Navbar />
+                        <div>
+                            <Route exact path="/login" component={Login} />
+                        </div>
+                    </>
                 </BrowserRouter>
             </div>
         )
