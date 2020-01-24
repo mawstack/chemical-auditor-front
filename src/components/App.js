@@ -3,7 +3,8 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { createRecord } from "./../actions";
 import { globalState } from "./../store";
-import Login from "./Login";
+import Login from "./forms/Login";
+import Register from "./forms/Register"
 import NavDrawer from "./shared/NavDrawer";
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
             <NavDrawer />
             <div>
               <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
             </div>
           </>
         </BrowserRouter>
