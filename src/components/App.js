@@ -5,6 +5,8 @@ import { createRecord } from "./../actions";
 import { globalState } from "./../store";
 // import Login from "./Login";
 import SignIn from "./Login";
+import NavBar from "./shared/NavBar"
+
 
 class App extends Component {
     render() {
@@ -13,6 +15,7 @@ class App extends Component {
                 <BrowserRouter>
                     <div>
                         {/* <Route exact path="/login" component={Login} /> */}
+                        <NavBar />
                         <SignIn />
                     </div>
                 </BrowserRouter>
