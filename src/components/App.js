@@ -3,18 +3,22 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { createRecord } from "./../actions";
 import { globalState } from "./../store";
-// import Login from "./Login";
 import SignIn from "./Login";
+import NavDrawer from "./shared/NavDrawer";
+
 
 class App extends Component {
     render() {
         return (
             <div>
                 <BrowserRouter>
-                    <div>
-                        {/* <Route exact path="/login" component={Login} /> */}
-                        <SignIn />
-                    </div>
+                    <>
+                        <NavDrawer />
+                        <div>
+                            <Route exact path="/login" component={Login} />
+                        </div>
+                    </>
+
                 </BrowserRouter>
             </div>
         )
