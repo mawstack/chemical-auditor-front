@@ -5,7 +5,7 @@ import { createRecord } from "./../actions";
 // import { globalState } from "./../store";
 import Login from "./Login";
 // import Navigation from "./shared/Navigation";
-import Navbar from "./shared/Navbar";
+import NavDrawer from "./shared/NavDrawer";
 
 class App extends Component {
     render() {
@@ -13,7 +13,7 @@ class App extends Component {
             <div>
                 <BrowserRouter>
                     <>
-                        <Navbar />
+                        <NavDrawer />
                         <div>
                             <Route exact path="/login" component={Login} />
                         </div>
