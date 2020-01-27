@@ -3,9 +3,10 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { createRecord } from "./../actions";
 import { globalState } from "./../store";
-import Login from "./forms/Login";
-import Register from "./forms/Register"
+import Login from "./userForms/Login";
+import Register from "./userForms/Register";
 import NavDrawer from "./shared/NavDrawer";
+import EntryForm from "./entryForms/EntryForm";
 
 class App extends Component {
   render() {
@@ -17,6 +18,8 @@ class App extends Component {
             <div>
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              {/* Route below currently being used to test new entry form - please leave commented out in Master! */}
+              {/* <Route exact path="/new-entry" component={EntryForm} /> */}
             </div>
           </>
         </BrowserRouter>

@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Register = (props) => {
+const Register = props => {
   const classes = useStyles();
 
   return (

@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const NavDrawer = (props) => {
+const NavDrawer = props => {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -74,50 +74,51 @@ const NavDrawer = (props) => {
     if (true) {
       return (
         <List>
-        {["Logout", "Create new record"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+          {["Logout", "Create new record"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
         </List>
-      )
+      );
     } else {
       return (
         <List>
-        {["Login", "Register"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+          {["Login", "Register"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
         </List>
-    )}
-  }
+      );
+    }
+  };
 
   const isAdmin = () => {
     // Logic to check if user is admin
     if (false) {
-      return null; 
+      return null;
     } else {
       return (
         <List>
-        {["View Users"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      )
+          {["View Users"].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
+        </List>
+      );
     }
-  }
+  };
 
   const drawer = (
     <div>
@@ -181,6 +182,6 @@ const NavDrawer = (props) => {
       </nav>
     </div>
   );
-}
+};
 
 export default NavDrawer;
