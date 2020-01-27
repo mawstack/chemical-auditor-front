@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createRecord } from "./../actions";
 import { globalState } from "./../store";
 import Login from "./forms/Login";
-import Register from "./forms/Register"
+import Register from "./forms/Register";
 import NavDrawer from "./shared/NavDrawer";
 
 class App extends Component {
