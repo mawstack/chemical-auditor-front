@@ -14,11 +14,12 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <>
-            {/* <NavDrawer /> */}
+            <NavDrawer />
             <div>
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/new-entry" component={EntryForm} />
+              {/* Route below currently being used to test new entry form - please leave commented out in Master! */}
+              {/* <Route exact path="/new-entry" component={EntryForm} /> */}
             </div>
           </>
         </BrowserRouter>
