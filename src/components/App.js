@@ -14,12 +14,11 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <>
-            <NavDrawer />
+          {/* <NavDrawer /> */}
             <div>
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              {/* Route below currently being used to test new entry form - please leave commented out in Master! */}
-              {/* <Route exact path="/new-entry" component={EntryForm} /> */}
+              <Route exact path="/new-entry" component={EntryForm} />
             </div>
           </>
         </BrowserRouter>
@@ -27,7 +26,6 @@ class App extends Component {
     );
   }
 }
-
 //(record-creation-specific connect invocation to be moved to specific relevant [i.e. record making] component later)
 const mapStateToProps = globalState => {
   return {

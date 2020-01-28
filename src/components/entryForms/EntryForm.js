@@ -1,23 +1,25 @@
 import React, { Component } from "react";
-import FormEntryDetails from "./FormEntryDetails"
-//import FormAdditionalDetails from "./FormAdditionalDetails"
+import FormEntryDetails from "./FormEntryDetails";
+import FormAdditionalDetails from "./FormAdditionalDetails";
+import Confirm from "./Confirm";
 
 export class EntryForm extends Component {
   state = {
     // step == current step we are on
     step: 1,
-    startTime: 0,
-    finishTime: 0,
-    cropRow: 0,
+    date: null,
+    startTime: null,
+    finishTime: null,
+    cropRow: null,
     chemicalUsed: "",
-    whp: 0,
+    whp: null,
     ehd: "",
-    rateApplied: 0,
-    quantityApplied: 0,
+    rateApplied: null,
+    quantityApplied: null,
     image: "",
     equipmentMethodUsed: "",
-    speed: 0,
-    deg: 0,
+    speed: null,
+    deg: null,
     notes: ""
   };
 
@@ -45,6 +47,7 @@ export class EntryForm extends Component {
   render() {
     const {
       step,
+      date,
       startTime,
       finishTime,
       cropRow,
@@ -61,6 +64,7 @@ export class EntryForm extends Component {
     } = this.state;
 
     const values = {
+      date, 
       startTime,
       finishTime,
       cropRow,
@@ -86,9 +90,22 @@ export class EntryForm extends Component {
           />
         );
       case 2:
-        return <h1>FormAdditionalDetails</h1>;
+        return (
+          <FormAdditionalDetails
+            nextStep={this.nextStep}
+            previousStep={this.previousStep}
+            handleChange={this.handleChange}
+            values={values}
+          />
+        );
       case 3:
-        return <h1>Confirm</h1>;
+        return (
+          <Confirm
+            nextStep={this.nextStep}
+            previousStep={this.previousStep}
+            values={values}
+          />
+        );
       case 4:
         return <h1>Success</h1>;
       default:
