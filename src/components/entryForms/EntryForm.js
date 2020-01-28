@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FormEntryDetails from "./FormEntryDetails";
 import FormAdditionalDetails from "./FormAdditionalDetails";
 import Confirm from "./Confirm";
+import Success from "./Success";
 
 export class EntryForm extends Component {
   state = {
@@ -64,7 +65,7 @@ export class EntryForm extends Component {
     } = this.state;
 
     const values = {
-      date, 
+      date,
       startTime,
       finishTime,
       cropRow,
@@ -107,7 +108,7 @@ export class EntryForm extends Component {
           />
         );
       case 4:
-        return <h1>Success</h1>;
+        return <Success />;
       default:
         return null;
     }

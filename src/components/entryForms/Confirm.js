@@ -98,9 +98,7 @@ class FormAdditionalDetails extends Component {
               variant="contained"
               color="primary"
               onClick={this.continue}
-            >
-              Confirm
-            </Button>
+            >Confirm</Button>
             <Button
               className={styles.button}
               type="submit"
@@ -108,9 +106,7 @@ class FormAdditionalDetails extends Component {
               variant="contained"
               color="default"
               onClick={this.back}
-            >
-              Back
-            </Button>
+            >Back</Button>
         </div>
       </Container>
     );

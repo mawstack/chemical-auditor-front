@@ -24,7 +24,17 @@ class FormEntryDetails extends Component {
             New Entry
           </Typography>
           <form className={styles.form} noValidate>
-            {/* INSERT DATE FIELD HERE */}
+            <TextField
+              id="date"
+              label="Birthday"
+              type="date"
+              defaultValue="2020-01-01"
+              className={styles.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+            <br />
             <TextField
               id="startTime"
               label="Start Time"

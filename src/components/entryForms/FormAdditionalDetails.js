@@ -36,7 +36,6 @@ class FormAdditionalDetails extends Component {
               id="image"
               label="Image URL"
               name="image"
-              autoFocus
               floatingLabelText="Image URL"
               onChange={handleChange("image")}
               defaultValue={values.image}
@@ -49,7 +48,6 @@ class FormAdditionalDetails extends Component {
               id="equipmentMethodUsed"
               label="Equipment/Method Used"
               name="equipmentMethodUsed"
-              autoFocus
               floatingLabelText="Equipment/Method Used"
               onChange={handleChange("equipmentMethodUsed")}
               defaultValue={values.equipmentMethodUsed}
@@ -62,7 +60,6 @@ class FormAdditionalDetails extends Component {
               id="speed"
               label="Wind Speed"
               name="speed"
-              autoFocus
               floatingLabelText="Wind Speed"
               onChange={handleChange("speed")}
               defaultValue={values.speed}
@@ -75,7 +72,6 @@ class FormAdditionalDetails extends Component {
               id="deg"
               label="Wind Direction (Degrees)"
               name="deg"
-              autoFocus
               floatingLabelText="Wind Direction (Degrees)"
               onChange={handleChange("deg")}
               defaultValue={values.deg}
@@ -88,7 +84,6 @@ class FormAdditionalDetails extends Component {
               id="notes"
               label="Notes"
               name="notes"
-              autoFocus
               floatingLabelText="Notes"
               onChange={handleChange("notes")}
               defaultValue={values.notes}
