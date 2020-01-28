@@ -23,6 +23,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 // import Deposits from './Deposits';        can be used for weatherblock later or navigation buttons
 // import Orders from './Orders';            replaced this with the DenseTable
 import DenseTable from "./RecentEntryTable"
+import NavDrawer from "./shared/NavDrawer"
 
 function Copyright() {
   return (
@@ -166,7 +167,7 @@ export default function Dashboard() {
           </IconButton>
         </div>
         <Divider />
-        {/* <List>{mainListItems}</List> */}
+        {/* <List>{mainListItems}</List> */}<NavDrawer />
         <Divider />
         {/* <List>{secondaryListItems}</List> */}
       </Drawer>
