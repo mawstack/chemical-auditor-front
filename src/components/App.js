@@ -8,6 +8,7 @@ import Register from "./userForms/Register";
 import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
 import DenseTable from "./RecentEntryTable"
+import Dashboard from "./Dashboard";
 
 class App extends Component {
   render() {
@@ -25,7 +26,9 @@ class App extends Component {
               
             </div>
             <div>
-            <DenseTable />
+            {/* <DenseTable /> */}
+
+            <Dashboard />
             </div>
           </>
         </BrowserRouter>
