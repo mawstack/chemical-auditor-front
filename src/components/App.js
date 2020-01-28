@@ -7,6 +7,7 @@ import Login from "./userForms/Login";
 import Register from "./userForms/Register";
 import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
+import DenseTable from "./RecentEntryTable"
 
 class App extends Component {
   render() {
@@ -14,12 +15,17 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <>
-            <NavDrawer />
+
+            {/* <NavDrawer /> */}
             <div>
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               {/* Route below currently being used to test new entry form - please leave commented out in Master! */}
               {/* <Route exact path="/new-entry" component={EntryForm} /> */}
+              
+            </div>
+            <div>
+            <DenseTable />
             </div>
           </>
         </BrowserRouter>
