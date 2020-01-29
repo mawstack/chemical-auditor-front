@@ -1,34 +1,56 @@
 import React, { Component } from "react";
-import Box from "@material-ui/core/Box";
-import Container from "@material-ui/core/Container"
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button"
+import { List, ListItemText, makeStyles, Typography, CssBaseline, Container, Box } from "@material-ui/core";
 
 //List/ListItem
 class ViewEntryForm extends Component {
-    render() {
-        return(
-            <>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <Box className={styles.paper}>
-                        <Box id="header">
-                            <Typography component="p" variant="p">
-                                Entry (date) - XXX
-                            </Typography>
-                            <Typography component="p" variant="p">
-                                (Operator Name)
-                            </Typography>
-                        </Box>
-                        
-                        
-                    </Box>
-                </Container>
-            </>
-        )
-    }
+  render() {
+    const {
+      values: {
+          date,
+          startTime,
+          finishTime,
+          cropRow,
+          chemicalUsed,
+          whp,
+          ehd,
+          rateApplied,
+          quantityApplied,
+          image,
+          equipmentMethodUsed,
+          speed,
+          deg,
+          notes
+        }
+    } = this.props;
+
+    return(
+      <>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
+          <Box className={styles.paper}>
+              <Box id="header">
+                  <Typography component="p" variant="p">
+                      Entry (date) - XXX
+                  </Typography>
+                  <Typography component="p" variant="p">
+                      (Operator Name)
+                  </Typography>
+              </Box>
+              <List>
+                  <ListItemText primary="Location: " secondary={location} />
+                  <ListItemText primary="Crop Row: " secondary={cropRow} />
+                  <ListItemText primary="Chemical Name: " secondary={chemicalName} />
+                  <ListItemText primary="WHD / EHD: " secondary={whdEhd} />
+                  <ListItemText primary="Rate of Application and Quantity Applied: " secondary={rateQuantity} />
+                  <ListItemText primary="Wind Speed / Direction: " secondary={windSpeedDirection} />
+                  <ListItemText primary="Equipment / Method Used: " secondary={equipmentMethod} />
+                  <ListItemText primary="Image: " />
+              </List>
+          </Box>
+        </Container>
+      </>
+    )
+  }
 }
 
 const styles = makeStyles(theme => ({
