@@ -8,7 +8,7 @@ import Register from "./userForms/Register";
 import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
 import DenseTable from "./RecentEntryTable"
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard/Dashboard";
 
 class App extends Component {
   render() {
