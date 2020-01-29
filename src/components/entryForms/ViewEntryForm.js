@@ -3,24 +3,24 @@ import { List, ListItemText, makeStyles, Typography, CssBaseline, Container, Box
 import axios from "axios";
 
 class ViewEntryForm extends Component {
+  state = { entry: null }
+  
+  async componentDidMount() {
+    await axios.get(
+      "http://localhost:3001/entries/5e279f8c1426860cb4428c5d",
+      { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwMjczMDAyLCJleHAiOjE1ODAzNTk0MDJ9.M34e3QokEUABn1O80u5Sg-HjzAB9vxLKsxtN7gKUTA4" } }
+    )
+    .then(res => {
+      const entry = res.data;
+      this.setState({ entry });
+      console.log(this.state.entry);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+  
   render() {
-    const request = {
-      url: "http://localhost:3001/entries/5e279f8c1426860cb4428c5d",
-      method: "GET",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwMjczMDAyLCJleHAiOjE1ODAzNTk0MDJ9.M34e3QokEUABn1O80u5Sg-HjzAB9vxLKsxtN7gKUTA4"
-      }
-    }
-    axios(request)
-      .then(res => {
-        const test = res;
-        console.log(test);
-      })
-      .catch(err => {
-        const test = err;
-      });
-
     // const {
     //   values: {
     //       date,
@@ -42,6 +42,7 @@ class ViewEntryForm extends Component {
 
     return(
       <>
+      <h1>{this.state.entry.startTime}</h1>
         {/* <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box className={styles.paper}>
