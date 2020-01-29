@@ -24,6 +24,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 // import Orders from './Orders';            replaced this with the DenseTable
 import DenseTable from "./RecentEntryTable"
 import NavDrawer from "./shared/NavDrawer"
+import getUserData from './WeatherBlock';
+import WeatherBlock from './WeatherBlock';
 
 function Copyright() {
   return (
@@ -184,7 +186,8 @@ export default function Dashboard() {
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-                {/* <Deposits /> */} <h1>weatherblock</h1>
+                {/* <Deposits /> */} <WeatherBlock />
+                <getUserData />
               </Paper>
             </Grid>
             {/* Recent Orders */}
