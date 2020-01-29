@@ -5,21 +5,38 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 class FormEntryDetails extends Component {
+  state = { weatherData: null }
+
   continue = event => {
     event.preventDefault();
     this.props.nextStep();
   };
 
+  async componentDidMount() {
+    const weatherData = await axios.get("https://localhost:3001/new"
+      )
+      .then(() => {
+        console.log(weatherData);
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+
+    this.setState({ weatherData: weatherData});
+  }
+
   render() {
     const { values, handleChange } = this.props;
-
+    const { weatherData } = this.state;
     return (
 
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={styles.paper}>
+          <p>{weatherData}</p>
           <Typography component="h1" variant="h3">
             New Entry
           </Typography>
