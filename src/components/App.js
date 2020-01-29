@@ -17,7 +17,7 @@ class App extends Component {
         <BrowserRouter>
           <>
 
-            {/* <NavDrawer /> */}
+            <NavDrawer />
             <div>
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
