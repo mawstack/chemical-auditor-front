@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { List, ListItemText, makeStyles, Typography, CssBaseline, Container, Box } from "@material-ui/core";
 
-//List/ListItem
 class ViewEntryForm extends Component {
   render() {
     const {
@@ -37,14 +36,20 @@ class ViewEntryForm extends Component {
                   </Typography>
               </Box>
               <List>
-                  <ListItemText primary="Location: " secondary={location} />
-                  <ListItemText primary="Crop Row: " secondary={cropRow} />
-                  <ListItemText primary="Chemical Name: " secondary={chemicalName} />
-                  <ListItemText primary="WHD / EHD: " secondary={whdEhd} />
-                  <ListItemText primary="Rate of Application and Quantity Applied: " secondary={rateQuantity} />
-                  <ListItemText primary="Wind Speed / Direction: " secondary={windSpeedDirection} />
-                  <ListItemText primary="Equipment / Method Used: " secondary={equipmentMethod} />
-                  <ListItemText primary="Image: " />
+                <ListItemText primary="Date: " secondary={date} />
+                <ListItemText primary="Start Time: " secondary={startTime} />
+                <ListItemText primary="Finish Time: " secondary={finishTime} />
+                <ListItemText primary="Crop Row: " secondary={cropRow} />
+                <ListItemText primary="Chemical Used " secondary={chemicalUsed} />
+                <ListItemText primary="Witholding Period: " secondary={whp} />
+                <ListItemText primary="Earliest Harvest Date: " secondary={ehd} />
+                <ListItemText primary="Rate Applied: " secondary={rateApplied} />
+                <ListItemText primary="Quantity Applied: " secondary={quantityApplied} />
+                <ListItemText primary="Image: " secondary={image} />
+                <ListItemText primary="Equipment Method Used: " secondary={equipmentMethodUsed} />
+                <ListItemText primary="Wind Speed: " secondary={speed} />
+                <ListItemText primary="Wind Degrees:  " secondary={deg} />
+                <ListItemText primary="Notes: " secondary={notes} />
               </List>
           </Box>
         </Container>
