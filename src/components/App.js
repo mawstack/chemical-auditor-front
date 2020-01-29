@@ -10,25 +10,20 @@ import EntryForm from "./entryForms/EntryForm";
 import DenseTable from "./RecentEntryTable"
 import Dashboard from "./Dashboard";
 
+
 class App extends Component {
   render() {
     return (
       <div>
         <BrowserRouter>
           <>
-
-            {/* <NavDrawer /> */}
+          <NavDrawer />
             <div>
+              <Route exact path="/" component={Dashboard}
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              {/* Route below currently being used to test new entry form - please leave commented out in Master! */}
-              {/* <Route exact path="/new-entry" component={EntryForm} /> */}
-              
-            </div>
-            <div>
-            {/* <DenseTable /> */}
-
-            <Dashboard />
+              <Route exact path="/new-entry" component={EntryForm} />
+              <Route exact path="/entry-view" component={ViewEntryForm} />
             </div>
           </>
         </BrowserRouter>
@@ -36,7 +31,6 @@ class App extends Component {
     );
   }
 }
-
 //(record-creation-specific connect invocation to be moved to specific relevant [i.e. record making] component later)
 const mapStateToProps = globalState => {
   return {
