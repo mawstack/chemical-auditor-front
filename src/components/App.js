@@ -7,6 +7,7 @@ import Login from "./userForms/Login";
 import Register from "./userForms/Register";
 import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
+import ViewEntryForm from "./entryForms/ViewEntryForm";
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />
+              <Route exact path="/entry-view" component={ViewEntryForm} />
             </div>
           </>
         </BrowserRouter>
