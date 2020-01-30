@@ -7,6 +7,7 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
 class FormEntryDetails extends Component {
+
   continue = event => {
     event.preventDefault();
     this.props.nextStep();
@@ -16,7 +17,6 @@ class FormEntryDetails extends Component {
     const { values, handleChange } = this.props;
 
     return (
-
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={styles.paper}>
@@ -31,7 +31,7 @@ class FormEntryDetails extends Component {
               defaultValue="2020-01-01"
               className={styles.textField}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
             />
             <br />
@@ -42,10 +42,10 @@ class FormEntryDetails extends Component {
               defaultValue="00:00"
               className={styles.textField}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
               inputProps={{
-                step: 300, // 5 min
+                step: 300 // 5 min
               }}
               onChange={handleChange("startTime")}
             />
@@ -56,10 +56,10 @@ class FormEntryDetails extends Component {
               defaultValue="11:59"
               className={styles.textField}
               InputLabelProps={{
-                shrink: true,
+                shrink: true
               }}
               inputProps={{
-                step: 300, // 5 min
+                step: 300 // 5 min
               }}
               onChange={handleChange("finishTime")}
             />
@@ -71,8 +71,6 @@ class FormEntryDetails extends Component {
               id="cropRow"
               label="Crop Row"
               name="cropRow"
-              autoFocus
-              floatingLabelText="Crop Row"
               onChange={handleChange("cropRow")}
               defaultValue={values.cropRow}
             />
@@ -84,8 +82,6 @@ class FormEntryDetails extends Component {
               id="chemicalUsed"
               label="Chemical Used"
               name="chemicalUsed"
-              autoFocus
-              floatingLabelText="Chemical Used"
               onChange={handleChange("chemicalUsed")}
               defaultValue={values.chemicalUsed}
             />
@@ -97,8 +93,6 @@ class FormEntryDetails extends Component {
               id="whp"
               label="Withholding Period"
               name="whp"
-              autoFocus
-              floatingLabelText="Withholding Period"
               onChange={handleChange("whp")}
               defaultValue={values.whp}
             />
@@ -110,8 +104,6 @@ class FormEntryDetails extends Component {
               id="ehd"
               label="Earliest Harvest Date"
               name="ehd"
-              autoFocus
-              floatingLabelText="Earliest Harvest Date"
               onChange={handleChange("ehd")}
               defaultValue={values.ehd}
             />
@@ -123,8 +115,6 @@ class FormEntryDetails extends Component {
               id="rateApplied"
               label="Rate Applied"
               name="rateApplied"
-              autoFocus
-              floatingLabelText="Rate Applied"
               onChange={handleChange("rateApplied")}
               defaultValue={values.rateApplied}
             />
@@ -136,8 +126,6 @@ class FormEntryDetails extends Component {
               id="quantityApplied"
               label="Quantity Applied"
               name="quantityApplied"
-              autoFocus
-              floatingLabelText="Quantity Applied"
               onChange={handleChange("quantityApplied")}
               defaultValue={values.quantityApplied}
             />
@@ -148,19 +136,20 @@ class FormEntryDetails extends Component {
               variant="contained"
               color="primary"
               onClick={this.continue}
-            >Continue</Button>
+            >
+              Continue
+            </Button>
           </form>
         </div>
       </Container>
-
     );
   }
 }
 
 const styles = makeStyles(theme => ({
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   paper: {
     marginTop: theme.spacing(8),
@@ -178,7 +167,7 @@ const styles = makeStyles(theme => ({
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
-    width: 200,
+    width: 200
   }
 }));
 

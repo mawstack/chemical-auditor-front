@@ -10,7 +10,6 @@ import EntryForm from "./entryForms/EntryForm";
 import DenseTable from "./RecentEntryTable"
 import Dashboard from "./dashboard/Dashboard";
 
-
 class App extends Component {
   render() {
     return (
