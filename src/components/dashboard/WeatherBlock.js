@@ -28,10 +28,10 @@ class WeatherBlock extends Component {
       const fullParsedData = JSON.parse(weatherData);
       return (
         <div>
-          <h3>Today's Weather:</h3>
+          <h1>Current Weather:</h1>
           <ul>
-            <li>Wind Speed: {fullParsedData.speed}km/h</li>
-            <li>Wind Direction: {fullParsedData.deg}</li>
+            <li>Wind Speed: {fullParsedData.speed * 3.6}km/h</li>
+            <li>Wind Direction: {fullParsedData.deg} degrees</li>
           </ul>
         </div>
       )

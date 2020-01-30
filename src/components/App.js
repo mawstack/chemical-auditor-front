@@ -16,9 +16,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <>
-
             <NavDrawer />
-
             <div>
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/login" component={Login} />
@@ -32,6 +30,7 @@ class App extends Component {
     );
   }
 }
+
 //(record-creation-specific connect invocation to be moved to specific relevant [i.e. record making] component later)
 const mapStateToProps = globalState => {
   return {
