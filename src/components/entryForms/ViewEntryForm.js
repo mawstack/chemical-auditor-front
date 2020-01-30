@@ -73,7 +73,6 @@ class ViewEntryForm extends Component {
         </Container>
       )
     }
-
   }
 }
 

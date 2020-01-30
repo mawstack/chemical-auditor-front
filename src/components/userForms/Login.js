@@ -14,19 +14,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link to="https://material-ui.com/" color="inherit">
-        Chemical Auditor
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -47,9 +34,34 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const Copyright = () => {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link to="https://material-ui.com/" color="inherit">
+        Chemical Auditor
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
+
+//as App component needs returned JWT token, declare form onSubmit there then pass into Login??? - 30/1
+const onSubmit = (event) => {
+  event.preventDefault();
+  //event.target.action = endpoint to AJAX request
+  //event.target[0].value = email address entered
+  //event.target[1].value = password entered but undefined (auto-hidden?)
+  //NEED password value to send to back-end but not safe defined in front-end
+  event.persist();
+  console.log(event.target);
+}
+
 const Login = (props) => {
   const classes = useStyles();
   const domain = process.env.REACT_APP_API_DOMAIN;
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -58,7 +70,7 @@ const Login = (props) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} action={`${domain}/login`} method="post">
+        <form className={classes.form} action={`${domain}/login`} onSubmit={onSubmit} method="post">
           <TextField
             variant="outlined"
             margin="normal"
