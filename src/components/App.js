@@ -9,6 +9,7 @@ import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
 import DenseTable from "./dashboard/RecentEntryTable"
 import Dashboard from "./dashboard/Dashboard";
+import ViewEntryForm from "./entryForms/ViewEntryForm";
 
 class App extends Component {
   render() {
@@ -16,13 +17,13 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <>
-            <NavDrawer />
+            {/* <NavDrawer /> */}
             <div>
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />
-              {/* <Route exact path="/entry-view" component={ViewEntryForm} /> */}
+              <Route exact path="/entry-view" component={ViewEntryForm} />
             </div>
           </>
         </BrowserRouter>
