@@ -7,8 +7,9 @@ import Login from "./userForms/Login";
 import Register from "./userForms/Register";
 import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
-import DenseTable from "./RecentEntryTable"
+import DenseTable from "./dashboard/RecentEntryTable"
 import Dashboard from "./dashboard/Dashboard";
+import ViewEntryForm from "./entryForms/ViewEntryForm";
 
 class App extends Component {
   render() {
@@ -16,9 +17,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <>
-
-            <NavDrawer />
-
+            {/* <NavDrawer /> */}
             <div>
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/login" component={Login} />
@@ -32,6 +31,7 @@ class App extends Component {
     );
   }
 }
+
 //(record-creation-specific connect invocation to be moved to specific relevant [i.e. record making] component later)
 const mapStateToProps = globalState => {
   return {
