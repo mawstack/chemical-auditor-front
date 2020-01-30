@@ -10,7 +10,6 @@ import EntryForm from "./entryForms/EntryForm";
 import DenseTable from "./RecentEntryTable"
 import Dashboard from "./dashboard/Dashboard";
 
-
 class App extends Component {
   render() {
     return (
@@ -21,7 +20,7 @@ class App extends Component {
             <NavDrawer />
 
             <div>
-              <Route exact path="/" component={Dashboard}
+              <Route exact path="/" component={Dashboard} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />
