@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { createRecord } from "./../actions";
-import { globalState } from "./../store";
+// import { globalState } from "./../store";
 import Login from "./userForms/Login";
 import Register from "./userForms/Register";
-import NavDrawer from "./shared/NavDrawer";
+// import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
-import DenseTable from "./RecentEntryTable"
+// import DenseTable from "./RecentEntryTable"
 import Dashboard from "./Dashboard";
 
 class App extends Component {
