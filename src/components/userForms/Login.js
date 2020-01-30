@@ -52,10 +52,17 @@ const onSubmit = (event) => {
   event.preventDefault();
   //event.target.action = endpoint to AJAX request
   //event.target[0].value = email address entered
-  //event.target[1].value = password entered but undefined (auto-hidden?)
+  //what is event.target[1]?
+  //event.target[2].value = password entered but undefined (auto-hidden?)
   //NEED password value to send to back-end but not safe defined in front-end
   event.persist();
   console.log(event.target);
+  console.log(event.target[0]);
+  console.log(event.target[0].value);
+  console.log(event.target[1]);
+  console.log(event.target[1].value);
+  console.log(event.target[2]);
+  console.log(event.target[2].value);
 }
 
 const Login = (props) => {
