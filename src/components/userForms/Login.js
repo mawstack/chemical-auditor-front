@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -48,9 +47,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = props => {
+const Login = (props) => {
   const classes = useStyles();
-
+  const domain = process.env.REACT_APP_API_DOMAIN;
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,7 +58,7 @@ const Login = props => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} action={`${domain}/login`} method="post">
           <TextField
             variant="outlined"
             margin="normal"
@@ -97,9 +96,9 @@ const Login = props => {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="/register" to="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
+              <a href={`${domain}/register`}>
+                Don't have an account? Sign Up
+              </a>
             </Grid>
           </Grid>
         </form>
