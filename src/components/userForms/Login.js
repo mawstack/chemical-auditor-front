@@ -50,11 +50,13 @@ const Copyright = () => {
 //as App component needs returned JWT token, declare form onSubmit there then pass into Login??? - 30/1
 const onSubmit = (event) => {
   event.preventDefault();
-  //event.target.action = endpoint to AJAX request
+  //event.target.action = endpoint to AJAX request to
   //event.target[0].value = email address entered
   //what is event.target[1]?
-  //event.target[2].value = password entered but undefined (auto-hidden?)
-  //NEED password value to send to back-end but not safe defined in front-end
+  //event.target[2].value = password entered
+  //need password value to send to back-end but NOT safe visible in front-end
+  //the problem is in Textfield variant="outlined" which creates an extra element box
+  //how to circumvent useless outline boxes whilst maintaining styling?
   event.persist();
   console.log(event.target);
   console.log(event.target[0]);
