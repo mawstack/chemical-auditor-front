@@ -15,38 +15,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-// class Login extends Component {
-//     render() {
-//         return(
-//             <>
-//                 <div id="header-bar">
-//                     <h1>Chemical Auditor</h1>
-//                 </div>
-//                 <div id="sign-in-register-box">
-//                     <h2>Sign In</h2>
-//                     <form>
-//                         <label for="email">Email</label>
-//                         <input type="email" id="email" name="email" />
-//                         <label for="password">Password</label>
-//                         <input type="password" id="password" name="password" />
-//                         <input type="submit" value="Sign in" />
-//                     </form>
-
-//                     <Button variant="contained" color="primary">
-//                         <Link to="/register">Register New Account</Link>
-//                     </Button>
-
-//                 </div>
-//             </>
-//         )
-//     }
-// }
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
+      <Link to="https://material-ui.com/" color="inherit">
         Chemical Auditor
       </Link>{" "}
       {new Date().getFullYear()}
