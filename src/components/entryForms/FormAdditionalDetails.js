@@ -78,10 +78,10 @@ class FormAdditionalDetails extends Component {
                 required
                 fullWidth
                 id="speed"
-                label="Wind Speed"
+                label="Wind Speed (km/h)"
                 name="speed"
                 onChange={handleChange("speed")}
-                defaultValue={fullParsedData.speed}
+                defaultValue={fullParsedData.speed * 3.6}
               />
               <TextField
                 variant="outlined"
@@ -89,7 +89,7 @@ class FormAdditionalDetails extends Component {
                 required
                 fullWidth
                 id="deg"
-                label="Wind Direction (Degrees)"
+                label="Wind Direction (Meteorological degrees)"
                 name="deg"
                 onChange={handleChange("deg")}
                 defaultValue={fullParsedData.deg}
