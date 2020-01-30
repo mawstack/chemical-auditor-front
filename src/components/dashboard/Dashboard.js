@@ -22,10 +22,10 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 // import Chart from './Chart';              can be used for weatherblock later or navigation buttons
 // import Deposits from './Deposits';        can be used for weatherblock later or navigation buttons
 // import Orders from './Orders';            replaced this with the DenseTable
-import DenseTable from "./RecentEntryTable"
-import NavDrawer from "./shared/NavDrawer"
-import getUserData from './WeatherBlock';
+import DenseTable from "../RecentEntryTable";
+import NavDrawer from "../shared/NavDrawer";
 import WeatherBlock from './WeatherBlock';
+import NavButton from "./NavButton";
 
 function Copyright() {
   return (
@@ -135,7 +135,8 @@ export default function Dashboard() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      {/* <NavDrawer /> */}
+      {/* <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -155,24 +156,10 @@ export default function Dashboard() {
             </Badge>
           </IconButton>
         </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        {/* <List>{mainListItems}</List> */}<NavDrawer />
-        <Divider />
-        {/* <List>{secondaryListItems}</List> */}
-      </Drawer>
+      </AppBar> */}
+
+      
+      
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
@@ -181,6 +168,7 @@ export default function Dashboard() {
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 {/* <Chart /> */} <h1>Navigation buttons</h1>
+                <NavButton />
               </Paper>
             </Grid>
             {/* Recent Deposits */}
