@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import axios from "axios";
 
 const StyledTableCell = withStyles(theme => ({
     head: {
@@ -29,6 +30,8 @@ const StyledTableCell = withStyles(theme => ({
   function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
   }
+
+
   
   const rows = [
     createData('12/01/2020', "05:20", "23:00", "Max"),
@@ -44,9 +47,14 @@ const StyledTableCell = withStyles(theme => ({
     },
   });
 
+
+
+
+
 class DenseTable extends Component {
 
     state = {
+    response: "",
     date:"",    
     startTime: 0,
     finishTime: 0,
@@ -61,6 +69,35 @@ class DenseTable extends Component {
     speed: 0,
     deg: 0,
     notes: ""
+    }
+
+    componentDidMount() {
+      axios.get('http://localhost:3001/entries', { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMjZjMTIwOTRkYTUwODFjMmZiZDdiIiwiaWF0IjoxNTgwMzYyNzcwfQ.lI-ifWUazTJCxas67h8oYkhwb0R4IOFrqdIK1LXD2_0" 
+    } }).then(resp => {
+
+    
+        console.log(typeof resp.data);
+        const { _id, startTime, finishTime, date, } = resp.data[0];
+        console.log(_id, startTime, finishTime, date);
+        this.setState({response: resp.data })
+        console.log(this.state.response)
+    });
+    
+    
+    }
+  
+
+    renderTable (a) {
+      return a.map( task => {
+        return (
+          <>
+          <StyledTableCell>{task.date}</StyledTableCell>
+          <StyledTableCell>{task.startTime}</StyledTableCell>
+          <StyledTableCell>{task.finishTime}</StyledTableCell>
+          </>
+        )
+      } )
+
     }
 
   render () {
@@ -82,9 +119,10 @@ class DenseTable extends Component {
                     <StyledTableCell component="th" scope="row">
                         {row.name}
                     </StyledTableCell>
-                    <StyledTableCell align="right">{row.calories}</StyledTableCell>
+                    {this.renderTable(this.state.response)}
+                    {/* <StyledTableCell align="right">{row.calories}</StyledTableCell>
                     <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                    <StyledTableCell align="right">{row.carbs}</StyledTableCell>
+                    <StyledTableCell align="right">{row.carbs}</StyledTableCell> */}
                     {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
                     </StyledTableRow>
                 ))}
