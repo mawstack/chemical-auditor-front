@@ -23,7 +23,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 // import Deposits from './Deposits';        can be used for weatherblock later or navigation buttons
 // import Orders from './Orders';            replaced this with the DenseTable
 import DenseTable from "./RecentEntryTable";
-
 import WeatherBlock from './WeatherBlock';
 import NavButton from "./NavButton";
 
