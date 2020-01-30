@@ -7,7 +7,7 @@ import Login from "./userForms/Login";
 import Register from "./userForms/Register";
 import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
-import DenseTable from "./RecentEntryTable"
+import DenseTable from "./dashboard/RecentEntryTable"
 import Dashboard from "./dashboard/Dashboard";
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />
-              <Route exact path="/entry-view" component={ViewEntryForm} />
+              {/* <Route exact path="/entry-view" component={ViewEntryForm} /> */}
             </div>
           </>
         </BrowserRouter>
