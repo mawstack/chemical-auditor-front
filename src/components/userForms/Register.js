@@ -22,6 +22,7 @@ export class Register extends Component {
 
   handleChange = input => event => {
     this.setState({ [input]: event.target.value });
+    console.log(this.state);
   };
 
   handleSubmit = async event => {

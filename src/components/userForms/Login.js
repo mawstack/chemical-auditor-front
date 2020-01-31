@@ -14,6 +14,89 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+//as App component needs returned JWT token, declare form onSubmit there then pass into Login??? - 30/1
+
+class Login extends Component {
+  state = {
+    email: "",
+    password: ""
+  }
+  
+  handleChange = (input) => (event) => {
+    this.setState({ [input]: event.target.value});
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    const domain = `${process.env.REACT_APP_API_DOMAIN}/login`;
+
+    
+  }
+  
+  render() {
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={useStyles.paper}>
+          <Avatar className={useStyles.avatar}>{/* <LockOutlinedIcon /> */}</Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={useStyles.form} onSubmit={this.handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={this.handleChange("email")}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={this.handleChange("password")}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={useStyles.submit}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <a href={`${this.domain}/register`}>
+                  Don't have an account? Sign Up
+                </a>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    );
+  };
+}
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -26,6 +109,7 @@ function Copyright() {
     </Typography>
   );
 }
+
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -45,115 +129,5 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2)
   }
 }));
-
-const Copyright = () => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link to="https://material-ui.com/" color="inherit">
-        Chemical Auditor
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
-//as App component needs returned JWT token, declare form onSubmit there then pass into Login??? - 30/1
-
-class Login extends Component {
-  constructor() {
-    super();
-    // const classes = useStyles();
-    const domain = process.env.REACT_APP_API_DOMAIN;
-  }
-    
-
-  onSubmit = (event) => {
-    event.preventDefault();
-    //event.target.action = endpoint to AJAX request to
-    //event.target[0].value = email address entered
-    //what is event.target[1]?
-    //event.target[2].value = password entered
-    //need password value to send to back-end but NOT safe visible in front-end
-    //the problem is in Textfield variant="outlined" which creates an extra element box
-    //how to circumvent useless outline boxes whilst maintaining styling?
-    event.persist();
-    console.log(event.target);
-    console.log(event.target[0]);
-    console.log(event.target[0].value);
-    console.log(event.target[1]);
-    console.log(event.target[1].value);
-    console.log(event.target[2]);
-    console.log(event.target[2].value);
-  }
-  
-  onChange = () => {
-  
-  }
-  
-  render() {
-    const classes = this.useStyles();
-    return (
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <div className={this.classes.paper}>
-          <Avatar className={this.classes.avatar}>{/* <LockOutlinedIcon /> */}</Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
-          <form className={this.classes.form} action={`${this.domain}/login`} onSubmit={this.onSubmit} method="post">
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              onChange={this.onChange}
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={this.classes.submit}
-            >
-              Sign In
-            </Button>
-            <Grid container>
-              <Grid item>
-                <a href={`${this.domain}/register`}>
-                  Don't have an account? Sign Up
-                </a>
-              </Grid>
-            </Grid>
-          </form>
-        </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
-      </Container>
-    );
-  }
-}
 
 export default Login;
