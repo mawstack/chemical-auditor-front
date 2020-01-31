@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Axios from "axios";
+//import Axios from "axios";
 
 class WeatherBlock extends Component {
   state = {
@@ -34,10 +34,10 @@ class WeatherBlock extends Component {
   // }
 
   // BELOW IS THE FUNC WE WILL USE
-  // async componentWillMount() {
+  // async componentDidMount() {
   //   const weatherURL = `${process.env.REACT_APP_API_URL}/entries/new`
   //   await Axios.get(weatherURL)
-  //     .then(res => res.text())
+  //     //.then(res => res.text())
   //     .then(res =>
   //       this.setState({
   //         weatherData: res
@@ -64,7 +64,7 @@ class WeatherBlock extends Component {
             <li>Wind Direction: {fullParsedData.deg} degrees</li>
           </ul>
         </div>
-      )
+      );
     }
   }
 }
