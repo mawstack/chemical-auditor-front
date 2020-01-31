@@ -9,9 +9,8 @@ import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
 import DenseTable from "./dashboard/RecentEntryTable"
 import Dashboard from "./dashboard/Dashboard";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Container from "@material-ui/core/Container";
-
+import ViewEntryForm from "./entryForms/ViewEntryForm";
 
 class App extends Component {
   render() {

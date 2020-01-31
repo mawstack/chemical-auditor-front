@@ -5,15 +5,15 @@ import axios from "axios";
 class ViewEntryForm extends Component {
   state = { entry: null }
   
-  async componentDidMount() {
-    await axios.get(
+  componentDidMount() {
+    axios.get(
+      //need to get token and accessed url dynamically - 30/1
       "http://localhost:3001/entries/5e279f8c1426860cb4428c5d",
       { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwMjczMDAyLCJleHAiOjE1ODAzNTk0MDJ9.M34e3QokEUABn1O80u5Sg-HjzAB9vxLKsxtN7gKUTA4" } }
     )
     .then(res => {
       const entry = res.data;
       this.setState({ entry });
-      console.log(this.state.entry);
     })
     .catch(err => {
       console.log(err);
@@ -21,29 +21,28 @@ class ViewEntryForm extends Component {
   }
   
   render() {
-    // const {
-    //   values: {
-    //       date,
-    //       startTime,
-    //       finishTime,
-    //       cropRow,
-    //       chemicalUsed,
-    //       whp,
-    //       ehd,
-    //       rateApplied,
-    //       quantityApplied,
-    //       image,
-    //       equipmentMethodUsed,
-    //       speed,
-    //       deg,
-    //       notes
-    //     }
-    // } = /* a call to the API */;
+    if(!this.state.entry) {
+      return(<h1>Error</h1>)
+    } else {
+      const {
+        date,
+        startTime,
+        finishTime,
+        cropRow,
+        chemicalUsed,
+        whp,
+        ehd,
+        rateApplied,
+        quantityApplied,
+        image,
+        equipmentMethodUsed,
+        speed,
+        deg,
+        notes
+      } = this.state.entry;
 
-    return(
-      <>
-      <h1>{this.state.entry.startTime}</h1>
-        {/* <Container component="main" maxWidth="xs">
+      return(
+        <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box className={styles.paper}>
             <Box id="header">
@@ -71,9 +70,10 @@ class ViewEntryForm extends Component {
               <ListItemText primary="Notes: " secondary={notes} />
             </List>
           </Box>
-        </Container> */}
-      </>
-    )
+        </Container>
+      )
+    }
+
   }
 }
 
