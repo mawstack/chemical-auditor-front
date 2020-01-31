@@ -106,17 +106,6 @@ class FormEntryDetails extends Component {
               defaultValue={values.whp}
             />
             <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="ehd"
-              label="Earliest Harvest Date"
-              name="ehd"
-              onChange={handleChange("ehd")}
-              defaultValue={values.ehd}
-            />
-            <TextField
               id="ehd"
               label="Earliest Harvest Date"
               type="date"
