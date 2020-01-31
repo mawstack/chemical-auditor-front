@@ -34,7 +34,7 @@ const StyledTableCell = withStyles(theme => ({
 
   
   const rows = [
-    createData('12/01/2020', "05:20", "23:00", "Max"),
+    createData('14/01/2020', "05:20", "23:00", "Max"),
     createData('14/01/2020', "06:00", "21:15", "wayne"),
     createData('15/01/2020', "07:20", "23:00", "Angel"),
     createData('16/01/2020', "08:20", "23:00", "Robbie"),
@@ -68,40 +68,37 @@ class DenseTable extends Component {
     equipmentMethodUsed: "",
     speed: 0,
     deg: 0,
-    notes: ""
+    notes: "",
+    rows: []
     }
 
     componentDidMount() {
-      axios.get('http://localhost:3001/entries', { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMjZjMTIwOTRkYTUwODFjMmZiZDdiIiwiaWF0IjoxNTgwMzYyNzcwfQ.lI-ifWUazTJCxas67h8oYkhwb0R4IOFrqdIK1LXD2_0" 
+      axios.get(`${process.env.REACT_APP_API_URL}/entries`, { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMjZjMTIwOTRkYTUwODFjMmZiZDdiIiwiaWF0IjoxNTgwMzYyNzcwfQ.lI-ifWUazTJCxas67h8oYkhwb0R4IOFrqdIK1LXD2_0" 
     } }).then(resp => {
-
-    
-        console.log(typeof resp.data);
-        const { _id, startTime, finishTime, date, } = resp.data[0];
-        console.log(_id, startTime, finishTime, date);
-        this.setState({response: resp.data })
-        console.log(this.state.response)
+        this.setState({rows: resp.data })
     });
     
     
     }
   
 
-    renderTable (a) {
-      return a.map( task => {
-        return (
-          <>
-          <StyledTableCell>{task.date}</StyledTableCell>
-          <StyledTableCell>{task.startTime}</StyledTableCell>
-          <StyledTableCell>{task.finishTime}</StyledTableCell>
-          </>
-        )
-      } )
+    // renderTable (a) {
+    //   return a.map( task => {
+    //     return (
+    //       <>
+    //       <StyledTableCell>{task.date}</StyledTableCell>
+    //       <StyledTableCell>{task.startTime}</StyledTableCell>
+    //       <StyledTableCell>{task.finishTime}</StyledTableCell>
+    //       </>
+    //     )
+    //   } )
 
-    }
+    // }
 
   render () {
-        return (
+      const { rows } = this.state;
+
+      return (
             <TableContainer component={Paper}>
             <Table className={styles.table} size="small" aria-label="a dense table">
                 <TableHead>
@@ -117,13 +114,13 @@ class DenseTable extends Component {
                 {rows.map(row => (
                     <StyledTableRow key={row.name}>
                     <StyledTableCell component="th" scope="row">
-                        {row.name}
+                        {row.date}
                     </StyledTableCell>
-                    {this.renderTable(this.state.response)}
-                    {/* <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                    <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                    <StyledTableCell align="right">{row.carbs}</StyledTableCell> */}
-                    {/* <StyledTableCell align="right">{row.protein}</StyledTableCell> */}
+                    {/* {this.renderTable(this.state.response)} */}
+                    <StyledTableCell align="right">{row.startTime}</StyledTableCell>
+                    <StyledTableCell align="right">{row.finishTime}</StyledTableCell>
+                    <StyledTableCell align="right">{row.user}</StyledTableCell>
+                    <StyledTableCell align="right">{row.protein}</StyledTableCell>
                     </StyledTableRow>
                 ))}
                 </TableBody>
