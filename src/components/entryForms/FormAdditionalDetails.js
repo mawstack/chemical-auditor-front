@@ -136,7 +136,8 @@ class FormAdditionalDetails extends Component {
 const styles = makeStyles(theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    marginTop: "100px"
   },
   paper: {
     marginTop: theme.spacing(8),

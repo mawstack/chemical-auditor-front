@@ -1,18 +1,166 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import Checkbox from "@material-ui/core/Checkbox";
-// import Link from '@material-ui/core/Link';
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Axios from "axios";
+
+export class Register extends Component {
+  state = {
+    email: "",
+    username: "",
+    password: "",
+    repeatPassword: "",
+    passwordMatch: true
+  };
+
+  handleChange = input => event => {
+    this.setState({ [input]: event.target.value });
+  };
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    const { email, username, password } = this.state;
+    const isAdmin = false;
+
+    const registerURL = `${process.env.REACT_APP_API_URL}/users/register`;
+
+    if (this.state.password === this.state.repeatPassword) {
+      console.log("Passwords match");
+      await Axios.post(registerURL, { email, username, password, isAdmin })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+      this.setState({
+        email: "",
+        name: "",
+        password: "",
+        repeatPassword: ""
+      });
+      this.setState({ passwordMatch: true });
+    } else {
+      console.log("Passwords do not match, please try again");
+      this.setState({ passwordMatch: false });
+    }
+  };
+
+  passwordMatch() {
+    if (this.state.passwordMatch) {
+      return (
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="repeatPassword"
+          label="Repeat Password"
+          type="password"
+          id="repeatPassword"
+          onChange={this.handleChange("repeatPassword")}
+          value={this.state.repeatPassword}
+        />
+      );
+    } else {
+      return (
+        <TextField
+          error
+          id="outlined-error"
+          label="Repeat Password"
+          helperText="Password does not match"
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="repeatPassword"
+          type="password"
+          onChange={this.handleChange("repeatPassword")}
+          value={this.state.repeatPassword}
+        />
+      );
+    }
+  }
+
+  render() {
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={useStyles.paper}>
+          <Avatar className={useStyles.avatar}></Avatar>
+          <Typography component="h1" variant="h5">
+            Register
+          </Typography>
+          <form className={useStyles.form} onSubmit={this.handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              onChange={this.handleChange("email")}
+              value={this.state.email}
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              onChange={this.handleChange("username")}
+              value={this.state.username}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              onChange={this.handleChange("password")}
+              value={this.state.password}
+            />
+            {this.passwordMatch()}
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={useStyles.submit}
+            >
+              Register
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="/login" to="/login" variant="body2">
+                  {"Already have an account? Login"}
+                </Link>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    );
+  }
+}
 
 function Copyright() {
   return (
@@ -46,83 +194,5 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0, 2)
   }
 }));
-
-const Register = props => {
-  const classes = useStyles();
-
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>{/* <LockOutlinedIcon /> */}</Avatar>
-        <Typography component="h1" variant="h5">
-          Register
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="repeatPassword"
-            label="Repeat Password"
-            type="password"
-            id="repeatPassword"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Register
-          </Button>
-          <Grid container>
-            <Grid item>
-              <Link href="/login" to="/login" variant="body2">
-                {"Already have an account? Login"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
-  );
-};
 
 export default Register;

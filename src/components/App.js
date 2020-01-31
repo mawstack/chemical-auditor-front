@@ -9,14 +9,17 @@ import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
 import DenseTable from "./dashboard/RecentEntryTable"
 import Dashboard from "./dashboard/Dashboard";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Container from "@material-ui/core/Container";
+
 
 class App extends Component {
   render() {
+
     return (
-      <div>
+      <Container component="main" maxWidth="xs">
         <BrowserRouter>
-          <>
-            <NavDrawer />
+            {/* <NavDrawer /> */}
             <div>
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/login" component={Login} />
@@ -24,9 +27,8 @@ class App extends Component {
               <Route exact path="/new-entry" component={EntryForm} />
               {/* <Route exact path="/entry-view" component={ViewEntryForm} /> */}
             </div>
-          </>
         </BrowserRouter>
-      </div>
+      </Container>
     );
   }
 }
