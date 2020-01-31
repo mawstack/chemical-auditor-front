@@ -8,8 +8,8 @@ class ViewEntryForm extends Component {
   componentDidMount() {
     axios.get(
       //need to get token and accessed url dynamically - 30/1
-      "http://localhost:3001/entries/5e279f8c1426860cb4428c5d",
-      { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwMjczMDAyLCJleHAiOjE1ODAzNTk0MDJ9.M34e3QokEUABn1O80u5Sg-HjzAB9vxLKsxtN7gKUTA4" } }
+      `${process.env.REACT_APP_API_URL}/entries/5e326ef033de54090d38bc40`,
+      { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzM2E2ZWUzMjEwNmYwOTNhZjdlMTRiIiwiaWF0IjoxNTgwNDQzMzc0fQ.fGVs8at1w8ucmO7rkzm8bLbpOm0JjveKyiISlX7iibQ" } }
     )
     .then(res => {
       const entry = res.data;
