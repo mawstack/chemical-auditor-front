@@ -1,24 +1,54 @@
 import React, { Component } from "react";
+//import Axios from "axios";
 
 class WeatherBlock extends Component {
   state = {
-    weatherData: ""
+    weatherData: null,
+    errorMessage: ""
   };
 
-  callAPI() {
-    fetch("http://localhost:3001/entries/new")
-      .then(res => res.text())
-      .then(res =>
-        this.setState({
-          weatherData: res
-        })
-      )
-      .catch(err => console.log(err));
-  }
+  // callApi = async () => {
+  //   const weatherURL = `${process.env.REACT_APP_API_URL}/entries/new`
+  //   await Axios.get(weatherURL)
+  //     .then(res => res.text())
+  //     .then(res =>
+  //       this.setState({
+  //         weatherData: res
+  //       })
+  //     )
+  //     .catch(err =>
+  //       this.setState({
+  //         errorMessage: err
+  //       })
+  //     )
+  // }
+  // callAPI() {
+  //   fetch("http://localhost:3001/entries/new")
+  //     .then(res => res.text())
+  //     .then(res =>
+  //       this.setState({
+  //         weatherData: res
+  //       })
+  //     )
+  //     .catch(err => console.log(err));
+  // }
 
-  componentWillMount() {
-    this.callAPI();
-  }
+  // BELOW IS THE FUNC WE WILL USE
+  // async componentDidMount() {
+  //   const weatherURL = `${process.env.REACT_APP_API_URL}/entries/new`
+  //   await Axios.get(weatherURL)
+  //     //.then(res => res.text())
+  //     .then(res =>
+  //       this.setState({
+  //         weatherData: res
+  //       })
+  //     )
+  //     .catch(err =>
+  //       this.setState({
+  //         errorMessage: err
+  //       })
+  //     )
+  // }
 
   render() {
     const { weatherData } = this.state;
@@ -34,7 +64,7 @@ class WeatherBlock extends Component {
             <li>Wind Direction: {fullParsedData.deg} degrees</li>
           </ul>
         </div>
-      )
+      );
     }
   }
 }

@@ -21,8 +21,33 @@ export class EntryForm extends Component {
     equipmentMethodUsed: "",
     speed: null,
     deg: null,
-    notes: ""
+    notes: "",
+    weatherData: ""
   };
+
+  async callAPI() {
+    await fetch("http://localhost:3001/entries/new", {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMzc5ODU0ZjNlNmIwNjE1N2IyNTIxIiwiaWF0IjoxNTgwNDMxNzQ5fQ.0gkCC4B_A4mvsoz0n877js6bsokq7Z-LYWCzeSWwQSE"
+      }
+    })
+      .then(res => res.text())
+      .then(res =>
+        this.setState({
+          weatherData: res
+        })
+      )
+      .catch(err => console.log(err));
+
+    const { weatherData } = this.state;
+    const fullParsedData = JSON.parse(weatherData);
+    this.setState({
+      speed: fullParsedData.speed * 3.6,
+      deg: fullParsedData.deg
+    });
+    console.log(this.state);
+  }
 
   // Go to next step
   nextStep = () => {
@@ -44,6 +69,10 @@ export class EntryForm extends Component {
   handleChange = input => event => {
     this.setState({ [input]: event.target.value });
   };
+
+  componentDidMount() {
+    this.callAPI();
+  }
 
   render() {
     const {
@@ -81,36 +110,40 @@ export class EntryForm extends Component {
       notes
     };
 
-    switch (step) {
-      case 1:
-        return (
-          <FormEntryDetails
-            nextStep={this.nextStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 2:
-        return (
-          <FormAdditionalDetails
-            nextStep={this.nextStep}
-            previousStep={this.previousStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 3:
-        return (
-          <Confirm
-            nextStep={this.nextStep}
-            previousStep={this.previousStep}
-            values={values}
-          />
-        );
-      case 4:
-        return <Success />;
-      default:
-        return null;
+    if (this.state.speed) {
+      switch (step) {
+        case 1:
+          return (
+            <FormEntryDetails
+              nextStep={this.nextStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          );
+        case 2:
+          return (
+            <FormAdditionalDetails
+              nextStep={this.nextStep}
+              previousStep={this.previousStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          );
+        case 3:
+          return (
+            <Confirm
+              nextStep={this.nextStep}
+              previousStep={this.previousStep}
+              values={values}
+            />
+          );
+        case 4:
+          return <Success />;
+        default:
+          return null;
+      }
+    } else {
+      return <div>Loading...</div>;
     }
   }
 }

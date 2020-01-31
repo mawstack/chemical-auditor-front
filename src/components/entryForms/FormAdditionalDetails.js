@@ -7,7 +7,6 @@ import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 
 class FormAdditionalDetails extends Component {
-  state = { weatherData: "" };
 
   continue = event => {
     event.preventDefault();
@@ -19,124 +18,103 @@ class FormAdditionalDetails extends Component {
     this.props.previousStep();
   };
 
-  callAPI() {
-    fetch("http://localhost:3001/entries/new")
-      .then(res => res.text())
-      .then(res =>
-        this.setState({
-          weatherData: res,
-        })
-      )
-      .catch(err => console.log(err));
-  }
-
-  componentWillMount() {
-    this.callAPI();
-  }
-
   render() {
     const { values, handleChange } = this.props;
-    const { weatherData } = this.state;
-
-    if (!weatherData) {
-      return <div>Loading...</div>;
-    } else {
-      const fullParsedData = JSON.parse(weatherData);
-      return (
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
-          <div className={styles.paper}>
-            <Typography component="h1" variant="h3">
-              New Entry
-            </Typography>
-            <form className={styles.form} noValidate>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="image"
-                label="Image URL"
-                name="image"
-                onChange={handleChange("image")}
-                defaultValue={values.image}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="equipmentMethodUsed"
-                label="Equipment/Method Used"
-                name="equipmentMethodUsed"
-                onChange={handleChange("equipmentMethodUsed")}
-                defaultValue={values.equipmentMethodUsed}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="speed"
-                label="Wind Speed (km/h)"
-                name="speed"
-                onChange={handleChange("speed")}
-                defaultValue={fullParsedData.speed * 3.6}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="deg"
-                label="Wind Direction (Meteorological degrees)"
-                name="deg"
-                onChange={handleChange("deg")}
-                defaultValue={fullParsedData.deg}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="notes"
-                label="Notes"
-                name="notes"
-                onChange={handleChange("notes")}
-                defaultValue={values.notes}
-              />
-              <Button
-                className={styles.button}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-                onClick={this.continue}
-              >
-                Continue
-              </Button>
-              <Button
-                className={styles.button}
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="default"
-                onClick={this.back}
-              >
-                Back
-              </Button>
-            </form>
-          </div>
-        </Container>
-      );
-    }
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={styles.paper}>
+          <Typography component="h1" variant="h3">
+            New Entry
+          </Typography>
+          <form className={styles.form} noValidate>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="image"
+              label="Image URL"
+              name="image"
+              onChange={handleChange("image")}
+              defaultValue={values.image}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="equipmentMethodUsed"
+              label="Equipment/Method Used"
+              name="equipmentMethodUsed"
+              onChange={handleChange("equipmentMethodUsed")}
+              defaultValue={values.equipmentMethodUsed}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="speed"
+              label="Wind Speed (km/h)"
+              name="speed"
+              onChange={handleChange("speed")}
+              defaultValue={values.speed}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="deg"
+              label="Wind Direction (Meteorological degrees)"
+              name="deg"
+              onChange={handleChange("deg")}
+              defaultValue={values.deg}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="notes"
+              label="Notes"
+              name="notes"
+              onChange={handleChange("notes")}
+              defaultValue={values.notes}
+            />
+            <Button
+              className={styles.button}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              onClick={this.continue}
+            >
+              Continue
+            </Button>
+            <Button
+              className={styles.button}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="default"
+              onClick={this.back}
+            >
+              Back
+            </Button>
+          </form>
+        </div>
+      </Container>
+    );
   }
 }
 
 const styles = makeStyles(theme => ({
   container: {
     display: "flex",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    marginTop: "100px"
   },
   paper: {
     marginTop: theme.spacing(8),

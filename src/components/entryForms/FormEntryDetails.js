@@ -26,9 +26,12 @@ class FormEntryDetails extends Component {
           <form className={styles.form} noValidate>
             <TextField
               id="date"
-              label="Birthday"
+              label="Date"
               type="date"
-              defaultValue="2020-01-01"
+              required
+              fullWidth
+              margin="normal"
+              defaultValue={values.date}
               className={styles.textField}
               InputLabelProps={{
                 shrink: true
@@ -39,7 +42,10 @@ class FormEntryDetails extends Component {
               id="startTime"
               label="Start Time"
               type="startTime"
-              defaultValue="00:00"
+              required
+              fullWidth
+              margin="normal"
+              defaultValue={values.startTime || "00:00"}
               className={styles.textField}
               InputLabelProps={{
                 shrink: true
@@ -53,7 +59,10 @@ class FormEntryDetails extends Component {
               id="finishTime"
               label="Finish Time"
               type="finishTime"
-              defaultValue="11:59"
+              required
+              fullWidth
+              margin="normal"
+              defaultValue={values.finishTime || "23:59"}
               className={styles.textField}
               InputLabelProps={{
                 shrink: true
@@ -97,15 +106,15 @@ class FormEntryDetails extends Component {
               defaultValue={values.whp}
             />
             <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
               id="ehd"
               label="Earliest Harvest Date"
-              name="ehd"
-              onChange={handleChange("ehd")}
+              type="date"
+              className={styles.textField}
               defaultValue={values.ehd}
+              InputLabelProps={{
+                shrink: true
+              }}
+              onChange={handleChange("ehd")}
             />
             <TextField
               variant="outlined"
@@ -148,6 +157,7 @@ class FormEntryDetails extends Component {
 
 const styles = makeStyles(theme => ({
   container: {
+    marginTop: "100px",
     display: "flex",
     flexWrap: "wrap"
   },
