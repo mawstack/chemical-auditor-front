@@ -13,8 +13,8 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
-//as App component needs returned JWT token, declare form onSubmit there then pass into Login??? - 30/1
+import globalState from "./../../store";
+import { setJwtToken } from "./../../actions/index";
 
 class Login extends Component {
   state = {
@@ -131,3 +131,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default Login;
+
+export default connect((globalState) => {
+  // Giving access to the jwtToken within globalState to Login
+  return {
+    jwtToken: globalState.jwtToken
+  },
+  // Giving access to the setJwtToken from actions/ to Login (imported at top)
+  {
+    setJwtToken
+  }
+})(Login);
