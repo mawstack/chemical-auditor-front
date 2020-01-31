@@ -9,9 +9,9 @@ class ViewEntryForm extends Component {
     const entryUrl = `${process.env.REACT_APP_API_URL}/entries`
     axios.get(
       //need to get token and accessed url dynamically - 30/1
-      
-      `${entryUrl}/5e3379c34f3e6b06157b2522`,
-      { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMzc5ODU0ZjNlNmIwNjE1N2IyNTIxIiwiaWF0IjoxNTgwNDMxNzQ5fQ.0gkCC4B_A4mvsoz0n877js6bsokq7Z-LYWCzeSWwQSE" } }
+
+      `${process.env.REACT_APP_API_URL}/entries/5e326ef033de54090d38bc40`,
+      { headers: { Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzM2E2ZWUzMjEwNmYwOTNhZjdlMTRiIiwiaWF0IjoxNTgwNDQzMzc0fQ.fGVs8at1w8ucmO7rkzm8bLbpOm0JjveKyiISlX7iibQ" } }
     )
     .then(res => {
       const entry = res.data;

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 class WeatherBlock extends Component {
   state = {
-    weatherData: "",
+    weatherData: null,
     errorMessage: ""
   };
 
