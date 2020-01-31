@@ -7,10 +7,11 @@ import Login from "./userForms/Login";
 import Register from "./userForms/Register";
 // import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
-// import DenseTable from "./dashboard/RecentEntryTable"
+// import DenseTable from "./dashboard/RecentEntryTable";
 import Dashboard from "./dashboard/Dashboard";
 import Container from "@material-ui/core/Container";
 import ViewEntryForm from "./entryForms/ViewEntryForm";
+require("dotenv").config();
 
 class App extends Component {
   render() {
@@ -20,7 +21,7 @@ class App extends Component {
         <BrowserRouter>
             {/* <NavDrawer /> */}
             <div>
-              <Route exact path="/" component={Dashboard} />
+              <Route exact path="/" component={Dashboard} render={(props) => <Dashboard {...props} />} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />

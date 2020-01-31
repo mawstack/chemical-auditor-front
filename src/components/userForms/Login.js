@@ -1,6 +1,5 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -15,33 +14,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-// class Login extends Component {
-//     render() {
-//         return(
-//             <>
-//                 <div id="header-bar">
-//                     <h1>Chemical Auditor</h1>
-//                 </div>
-//                 <div id="sign-in-register-box">
-//                     <h2>Sign In</h2>
-//                     <form>
-//                         <label for="email">Email</label>
-//                         <input type="email" id="email" name="email" />
-//                         <label for="password">Password</label>
-//                         <input type="password" id="password" name="password" />
-//                         <input type="submit" value="Sign in" />
-//                     </form>
-
-//                     <Button variant="contained" color="primary">
-//                         <Link to="/register">Register New Account</Link>
-//                     </Button>
-
-//                 </div>
-//             </>
-//         )
-//     }
-// }
-
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -54,7 +26,6 @@ function Copyright() {
     </Typography>
   );
 }
-
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -75,67 +46,114 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = props => {
-  const classes = useStyles();
-
+const Copyright = () => {
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>{/* <LockOutlinedIcon /> */}</Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item>
-              <Link href="/register" to="/register" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
-    </Container>
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      <Link to="https://material-ui.com/" color="inherit">
+        Chemical Auditor
+      </Link>{" "}
+      {new Date().getFullYear()}
+      {"."}
+    </Typography>
   );
-};
+}
+
+//as App component needs returned JWT token, declare form onSubmit there then pass into Login??? - 30/1
+
+class Login extends Component {
+  constructor() {
+    super();
+    // const classes = useStyles();
+    const domain = process.env.REACT_APP_API_DOMAIN;
+  }
+    
+
+  onSubmit = (event) => {
+    event.preventDefault();
+    //event.target.action = endpoint to AJAX request to
+    //event.target[0].value = email address entered
+    //what is event.target[1]?
+    //event.target[2].value = password entered
+    //need password value to send to back-end but NOT safe visible in front-end
+    //the problem is in Textfield variant="outlined" which creates an extra element box
+    //how to circumvent useless outline boxes whilst maintaining styling?
+    event.persist();
+    console.log(event.target);
+    console.log(event.target[0]);
+    console.log(event.target[0].value);
+    console.log(event.target[1]);
+    console.log(event.target[1].value);
+    console.log(event.target[2]);
+    console.log(event.target[2].value);
+  }
+  
+  onChange = () => {
+  
+  }
+  
+  render() {
+    const classes = this.useStyles();
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div className={this.classes.paper}>
+          <Avatar className={this.classes.avatar}>{/* <LockOutlinedIcon /> */}</Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={this.classes.form} action={`${this.domain}/login`} onSubmit={this.onSubmit} method="post">
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              onChange={this.onChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={this.classes.submit}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <a href={`${this.domain}/register`}>
+                  Don't have an account? Sign Up
+                </a>
+              </Grid>
+            </Grid>
+          </form>
+        </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
+      </Container>
+    );
+  }
+}
 
 export default Login;
