@@ -3,7 +3,7 @@ import Axios from "axios";
 
 class WeatherBlock extends Component {
   state = {
-    weatherData: "",
+    weatherData: null,
     errorMessage: ""
   };
 
