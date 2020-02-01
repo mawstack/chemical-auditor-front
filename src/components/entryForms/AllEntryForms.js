@@ -33,7 +33,7 @@ const styles = makeStyles({
   }
 });
 
-class AllEntryForm extends Component {
+class AllEntryForms extends Component {
   state = {
     response: "",
     date: "",
@@ -85,15 +85,25 @@ class AllEntryForm extends Component {
     return (
       <TableContainer component={Paper}>
         <Table className={styles.table} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Date </StyledTableCell>
-              <StyledTableCell align="right">Starting time</StyledTableCell>
-              <StyledTableCell align="right">Finish time</StyledTableCell>
-              <StyledTableCell align="right">Name</StyledTableCell>
-              {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
-            </TableRow>
-          </TableHead>
+                <TableHead>
+                    <TableRow>
+                        <StyledTableCell align="right">Date </StyledTableCell>
+                        <StyledTableCell align="right">Starting time</StyledTableCell>
+                        <StyledTableCell align="right">Finish time</StyledTableCell>
+                        <StyledTableCell align="right">Crop row</StyledTableCell>
+                        <StyledTableCell align="right">Chemical used</StyledTableCell>
+                        <StyledTableCell align="right">Chemical used</StyledTableCell>
+                        <StyledTableCell align="right">WHP</StyledTableCell>
+                        <StyledTableCell align="right">EHD</StyledTableCell>
+                        <StyledTableCell align="right">Rate applied</StyledTableCell>
+                        <StyledTableCell align="right">Quantity applied</StyledTableCell>
+                        <StyledTableCell align="right">Equipment method used</StyledTableCell>
+                        <StyledTableCell align="right">Wind speed</StyledTableCell>
+                        <StyledTableCell align="right">Wind direction</StyledTableCell>
+                        <StyledTableCell align="right">Notes</StyledTableCell> 
+                    </TableRow>
+                </TableHead>
+         
           <TableBody>
             {rows.map(row => (
               <StyledTableRow key={row.name}>
@@ -102,11 +112,19 @@ class AllEntryForm extends Component {
                 </StyledTableCell>
                 {/* {this.renderTable(this.state.response)} */}
                 <StyledTableCell align="right">{row.startTime}</StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.finishTime}
-                </StyledTableCell>
+                <StyledTableCell align="right">{row.finishTime}</StyledTableCell>
                 <StyledTableCell align="right">{row.user}</StyledTableCell>
-                <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                <StyledTableCell align="right">{row.cropRow}</StyledTableCell>
+                <StyledTableCell align="right">{row.chemimcalUsed}</StyledTableCell>
+                <StyledTableCell align="right">{row.whp}</StyledTableCell>
+                <StyledTableCell align="right">{row.ehd}</StyledTableCell>
+                <StyledTableCell align="right">{row.rateApplied}</StyledTableCell>
+                <StyledTableCell align="right">{row.quantityApplied}</StyledTableCell>
+                <StyledTableCell align="right">{row.equipmentMethodUsed}</StyledTableCell>
+                <StyledTableCell align="right">{row.speed}</StyledTableCell>
+                <StyledTableCell align="right">{row.deg}</StyledTableCell>
+                <StyledTableCell align="right">{row.notes}</StyledTableCell>
+
               </StyledTableRow>
             ))}
           </TableBody>
@@ -116,4 +134,4 @@ class AllEntryForm extends Component {
   }
 }
 
-export default AllEntryForm;
+export default AllEntryForms;

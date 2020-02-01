@@ -137,8 +137,6 @@ export default function Dashboard() {
               <Paper className={classes.paper}>
                 <h1>Recent Entries</h1>
                  <RecentEntryTable />
-                <AllEntryForm />
-
               </Paper>
             </Grid>
           </Grid>
