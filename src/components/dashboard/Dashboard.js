@@ -12,6 +12,7 @@ import RecentEntryTable from "./RecentEntryTable";
 import WeatherBlock from "./WeatherBlock";
 import NavButton from "./NavButton";
 import ViewEntryForm from "../entryForms/ViewEntryForm"
+import AllEntryForm from "../entryForms/AllEntryForms";
 
 function Copyright() {
   return (
@@ -127,6 +128,7 @@ export default function Dashboard() {
             {/* */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
+                <h1>Current Weather</h1>
                 <WeatherBlock />
               </Paper>
             </Grid>
@@ -135,7 +137,7 @@ export default function Dashboard() {
               <Paper className={classes.paper}>
                 <h1>Recent Entries</h1>
                  <RecentEntryTable />
-                <ViewEntryForm />
+                <AllEntryForm />
 
               </Paper>
             </Grid>
