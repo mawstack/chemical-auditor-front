@@ -24,7 +24,7 @@ class App extends Component {
             {/* <NavDrawer /> */}
             <div>
               <Route exact path="/" component={Dashboard} render={(props) => <Dashboard {...props} />} />
-              <Route exact path="/login" component={Login} />
+              {/* <Route exact path="/login" component={Login} /> */}
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />
               <Route exact path="/entry-view" component={ViewEntryForm} />
