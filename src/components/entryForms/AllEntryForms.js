@@ -9,6 +9,16 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 
+import Fab from '@material-ui/core/Fab';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import NavigationIcon from '@material-ui/icons/Navigation';
+
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+
 const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -120,7 +130,22 @@ class AllEntryForms extends Component {
                 <StyledTableCell align="right">{row.equipmentMethodUsed}equipmentuse</StyledTableCell>
                 <StyledTableCell align="right">{row.speed}speed</StyledTableCell>
                 <StyledTableCell align="right">{row.deg}deg</StyledTableCell>
-                <StyledTableCell align="right">{row.notes}notes</StyledTableCell>
+                <StyledTableCell align="right">
+                    {row.notes}notes
+                    <Fab color="secondary" aria-label="edit">
+                        <EditIcon />
+                    </Fab>
+                    </StyledTableCell>
+
+
+                <StyledTableCell align="right">
+                    {/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */}
+                    <label htmlFor="icon-button-file">
+                        <IconButton color="primary" aria-label="upload picture" component="span">
+                        <PhotoCamera />
+                        </IconButton>
+                    </label>
+                </StyledTableCell>
 
               </StyledTableRow>
             ))}
