@@ -8,9 +8,10 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
-import DenseTable from "./RecentEntryTable";
+import RecentEntryTable from "./RecentEntryTable";
 import WeatherBlock from "./WeatherBlock";
 import NavButton from "./NavButton";
+import ViewEntryForm from "../entryForms/ViewEntryForm"
 
 function Copyright() {
   return (
@@ -133,7 +134,9 @@ export default function Dashboard() {
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <h1>Recent Entries</h1>
-                <DenseTable />
+                 <RecentEntryTable />
+                <ViewEntryForm />
+
               </Paper>
             </Grid>
           </Grid>
