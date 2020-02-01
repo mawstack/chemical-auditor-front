@@ -11,6 +11,8 @@ import EntryForm from "./entryForms/EntryForm";
 import Dashboard from "./dashboard/Dashboard";
 import Container from "@material-ui/core/Container";
 import ViewEntryForm from "./entryForms/ViewEntryForm";
+import AllEntryForm from "./entryForms/AllEntryForms";
+
 require("dotenv").config();
 
 class App extends Component {
@@ -26,6 +28,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />
               <Route exact path="/entry-view" component={ViewEntryForm} />
+              <Route exact path="/allentries" component={AllEntryForm} />
             </div>
         </BrowserRouter>
       </Container>

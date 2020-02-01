@@ -11,7 +11,7 @@ export default function NavButton() {
       
     </Button>
     <br/>
-    <Button variant="contained" color="primary" disableElevation href="http://localhost:3000/entry-view">
+    <Button variant="contained" color="primary" disableElevation href="http://localhost:3000/allentries">
       View All Entries
     </Button>
     <br/>
