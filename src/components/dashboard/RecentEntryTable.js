@@ -63,6 +63,9 @@ class RecentEntryTable extends Component {
       })
       .then(resp => {
         this.setState({ rows: resp.data });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 

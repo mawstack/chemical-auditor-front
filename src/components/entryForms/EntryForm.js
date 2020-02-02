@@ -28,7 +28,7 @@ export class EntryForm extends Component {
   };
 
   async callAPI() {
-    await fetch("http://localhost:3001/entries/new", {
+    await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMzc5ODU0ZjNlNmIwNjE1N2IyNTIxIiwiaWF0IjoxNTgwNDMxNzQ5fQ.0gkCC4B_A4mvsoz0n877js6bsokq7Z-LYWCzeSWwQSE"
@@ -138,7 +138,7 @@ export class EntryForm extends Component {
       notes
     };
 
-    if (this.state.deg) {
+    if (deg) {
       switch (step) {
         case 1:
           return (
@@ -173,12 +173,11 @@ export class EntryForm extends Component {
         default:
           return null;
       }
-    } else if (Object.prototype.toString.call(this.state.speed) === "[object String]"){
+    } else if (Object.prototype.toString.call(speed) === "[object String]"){
       return (
       <div>
-        <h3>{this.state.speed}</h3>
+        <h3>{speed}</h3>
       </div>
-      
       );
     } else {
       return (
