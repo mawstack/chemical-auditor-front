@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
+import allowCookiesAxios from "./../../apis/allowCookiesAxios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
@@ -15,7 +16,6 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import globalState from "./../../store";
 import { setJwtToken } from "./../../actions/index";
 import cookie from "js-cookie";
 
@@ -33,14 +33,14 @@ class Login extends Component {
     event.preventDefault();
     const domain = `${process.env.REACT_APP_API_DOMAIN}/login`;
     const { email, password } = this.state;
-
-    //make into custom axios middleware
-    const test = axios.create({ withCredentials: true });
     
-    await test.post(domain, { email, password })
+    await allowCookiesAxios.post(domain, { email, password })
       .then((res) => {
         console.log(res);
-        console.log(cookie.get("jwtToken"));
+        const jwtToken = cookie.get("jwtToken");
+        console.log(jwtToken);
+        console.log(this.props);
+        this.props.dispatch(setJwtToken(jwtToken));
       })
       .catch((err) => {
         console.log(err);
@@ -145,13 +145,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default connect((globalState) => {
-  // Giving access to the jwtToken within globalState to Login
+// Giving access to the jwtToken piece-of-state within globalState to Login
+const mapStateToProps = (state) => {
   return {
-    jwtToken: globalState.jwtToken
-  },
-  // Giving access to the setJwtToken from actions/ to Login (imported at top)
-  {
-    setJwtToken
+    jwtToken: state.jwtToken
   }
-})(Login);
+}
+
+// No second argument (i.e. explicit mapDispatchToProps()) = dispatch() automatically added to this.props
+export default connect(mapStateToProps)(Login);

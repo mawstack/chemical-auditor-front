@@ -1,8 +1,8 @@
 export default (jwtToken = null, action) => {
     switch(action.type) {
         case "JWT_TOKEN":
-            return jwtToken;
+            return action.payload;
         default:
-            return null;
+            return jwtToken;
     }
 }
