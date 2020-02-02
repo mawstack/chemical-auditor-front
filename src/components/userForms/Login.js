@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
@@ -16,6 +17,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import globalState from "./../../store";
 import { setJwtToken } from "./../../actions/index";
+import cookie from "js-cookie";
 
 class Login extends Component {
   state = {
@@ -30,7 +32,19 @@ class Login extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     const domain = `${process.env.REACT_APP_API_DOMAIN}/login`;
+    const { email, password } = this.state;
 
+    //make into custom axios middleware
+    const test = axios.create({ withCredentials: true });
+    
+    await test.post(domain, { email, password })
+      .then((res) => {
+        console.log(res);
+        console.log(cookie.get("jwtToken"));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     
   }
   
