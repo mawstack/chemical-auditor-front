@@ -5,16 +5,16 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
 
 class FormEntryDetails extends Component {
-
   continue = event => {
     event.preventDefault();
     this.props.nextStep();
   };
 
   render() {
-    const { values, handleChange } = this.props;
+    const { values, handleChange, Copyright } = this.props;
 
     return (
       <Container component="main" maxWidth="xs">
@@ -33,6 +33,7 @@ class FormEntryDetails extends Component {
               margin="normal"
               defaultValue={values.date}
               className={styles.textField}
+              onChange={handleChange("date")}
               InputLabelProps={{
                 shrink: true
               }}
@@ -150,6 +151,9 @@ class FormEntryDetails extends Component {
             </Button>
           </form>
         </div>
+        <Box mt={8}>
+          <Copyright />
+        </Box>
       </Container>
     );
   }

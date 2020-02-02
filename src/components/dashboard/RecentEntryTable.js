@@ -33,7 +33,7 @@ const styles = makeStyles({
   }
 });
 
-class DenseTable extends Component {
+class RecentEntryTable extends Component {
   state = {
     response: "",
     date: "",
@@ -63,6 +63,9 @@ class DenseTable extends Component {
       })
       .then(resp => {
         this.setState({ rows: resp.data });
+      })
+      .catch(err => {
+        console.log(err);
       });
   }
 
@@ -116,4 +119,4 @@ class DenseTable extends Component {
   }
 }
 
-export default DenseTable;
+export default RecentEntryTable;

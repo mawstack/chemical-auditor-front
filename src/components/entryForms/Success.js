@@ -6,17 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 class Success extends Component {
-  continue = event => {
-    event.preventDefault();
-    // Here is where we will send data to our API & process data
-    this.props.nextStep();
-  };
-
-  back = event => {
-    event.preventDefault();
-    this.props.previousStep();
-  };
-
   render() {
     return (
       <Container component="main" maxWidth="xs">
@@ -32,6 +21,7 @@ class Success extends Component {
               variant="contained"
               color="primary"
             >View Entry</Button>
+            <br />
             <Button
               className={styles.button}
               type="submit"
