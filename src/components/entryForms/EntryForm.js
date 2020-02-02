@@ -3,6 +3,8 @@ import FormEntryDetails from "./FormEntryDetails";
 import FormAdditionalDetails from "./FormAdditionalDetails";
 import Confirm from "./Confirm";
 import Success from "./Success";
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 
 export class EntryForm extends Component {
   state = {
@@ -42,10 +44,23 @@ export class EntryForm extends Component {
 
     const { weatherData } = this.state;
     const fullParsedData = JSON.parse(weatherData);
-    this.setState({
-      speed: fullParsedData.speed * 3.6,
-      deg: fullParsedData.deg
-    });
+    
+    const realSpeed = () => {
+      if (Object.prototype.toString.call(fullParsedData.speed) === "[object String]") {
+        this.setState({
+          speed: fullParsedData.speed,
+          deg: null
+        })
+      } else {
+        const realSpeed = Math.round ((fullParsedData.speed * 3.6) * 10) / 10;
+
+        this.setState({
+          speed: realSpeed,
+          deg: fullParsedData.deg
+        });
+      }
+    }
+    realSpeed();
     console.log(this.state);
   }
 
@@ -72,6 +87,19 @@ export class EntryForm extends Component {
 
   componentDidMount() {
     this.callAPI();
+  }
+
+  copyright() {
+    return (
+      <Typography variant="body2" color="textSecondary" align="center">
+        {"Copyright © "}
+        <Link color="inherit" to="https://material-ui.com/">
+          Chemical Auditor
+        </Link>{" "}
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    );
   }
 
   render() {
@@ -110,7 +138,7 @@ export class EntryForm extends Component {
       notes
     };
 
-    if (this.state.speed) {
+    if (this.state.deg) {
       switch (step) {
         case 1:
           return (
@@ -118,6 +146,7 @@ export class EntryForm extends Component {
               nextStep={this.nextStep}
               handleChange={this.handleChange}
               values={values}
+              Copyright={this.copyright}
             />
           );
         case 2:
@@ -127,6 +156,7 @@ export class EntryForm extends Component {
               previousStep={this.previousStep}
               handleChange={this.handleChange}
               values={values}
+              Copyright={this.copyright}
             />
           );
         case 3:
@@ -135,6 +165,7 @@ export class EntryForm extends Component {
               nextStep={this.nextStep}
               previousStep={this.previousStep}
               values={values}
+              Copyright={this.copyright}
             />
           );
         case 4:
@@ -142,8 +173,19 @@ export class EntryForm extends Component {
         default:
           return null;
       }
+    } else if (Object.prototype.toString.call(this.state.speed) === "[object String]"){
+      return (
+      <div>
+        <h3>{this.state.speed}</h3>
+      </div>
+      
+      );
     } else {
-      return <div>Loading...</div>;
+      return (
+      <div>
+        <h3>Loading...</h3>
+      </div>
+      );
     }
   }
 }

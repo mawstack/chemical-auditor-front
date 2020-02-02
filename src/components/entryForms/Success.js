@@ -32,6 +32,7 @@ class Success extends Component {
               variant="contained"
               color="primary"
             >View Entry</Button>
+            <br />
             <Button
               className={styles.button}
               type="submit"
