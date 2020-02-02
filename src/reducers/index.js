@@ -1,6 +1,9 @@
+// Note: This 'reducer index' file is literally the state...
+// e.g. 'jwtToken' set to jwtReducer below is a 'piece of state' of the app
+
 import { combineReducers } from "redux";
-import recordsReducer from "./records_reducer";
+import jwtReducer from "./jwt_reducer";
 
 export default combineReducers({
-  test: recordsReducer
+  jwtToken: jwtReducer
 });

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import { createRecord } from "./../actions";
+// import { (required action names) } from "./../actions";
 // import { globalState } from "./../store";
 import Login from "./userForms/Login";
 import Register from "./userForms/Register";
@@ -44,5 +44,5 @@ const mapStateToProps = globalState => {
 };
 
 export default connect(mapStateToProps, {
-  createRecord: createRecord
+  // required pieces of state (1st object) + required actions (2nd object)
 })(App);
