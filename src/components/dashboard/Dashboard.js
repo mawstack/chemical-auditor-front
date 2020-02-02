@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,10 +11,51 @@ import Link from "@material-ui/core/Link";
 import RecentEntryTable from "./RecentEntryTable";
 import WeatherBlock from "./WeatherBlock";
 import NavButton from "./NavButton";
-import ViewEntryForm from "../entryForms/ViewEntryForm"
-import AllEntryForm from "../entryForms/AllEntryForms";
+// import ViewEntryForm from "../entryForms/ViewEntryForm";
+// import AllEntryForm from "../entryForms/AllEntryForms";
+// import classes from "*.module.css";
 
-function Copyright() {
+class Dashboard extends Component {
+  render() {
+    const fixedHeightPaper = clsx(styles.paper, styles.fixedHeight);
+
+    return (
+      <div className={styles.root}>
+        <CssBaseline />
+        <main className={styles.content}>
+          <div className={styles.appBarSpacer} />
+          <Container maxWidth="lg" className={styles.container}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} md={8} lg={9}>
+                <Paper className={fixedHeightPaper}>
+                  <h1>Navigation buttons</h1>
+                  <NavButton />
+                </Paper>
+              </Grid>
+              <Grid item xs={12} md={4} lg={3}>
+                <Paper className={fixedHeightPaper}>
+                  <h1>Current Weather</h1>
+                  <WeatherBlock />
+                </Paper>
+              </Grid>
+              <Grid item xs={12}>
+                <Paper className={styles.paper}>
+                  <h1>Recent Entries</h1>
+                  <RecentEntryTable />
+                </Paper>
+              </Grid>
+            </Grid>
+            <Box pt={4}>
+              <Copyright />
+            </Box>
+          </Container>
+        </main>
+      </div>
+    );
+  }
+}
+
+const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
@@ -29,7 +70,7 @@ function Copyright() {
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const styles = makeStyles(theme => ({
   root: {
     display: "flex"
   },
@@ -108,44 +149,4 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Dashboard() {
-  const classes = useStyles();
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
-  return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <h1>Navigation buttons</h1>
-                <NavButton />
-              </Paper>
-            </Grid>
-            {/* */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-                <h1>Current Weather</h1>
-                <WeatherBlock />
-              </Paper>
-            </Grid>
-            {/* */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <h1>Recent Entries</h1>
-                 <RecentEntryTable />
-              </Paper>
-            </Grid>
-          </Grid>
-          {/* */}
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
-    </div>
-  );
-}
+export default Dashboard;
