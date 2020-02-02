@@ -133,7 +133,7 @@ const NavDrawer = props => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="sticky" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"

@@ -5,7 +5,7 @@ import { createRecord } from "./../actions";
 // import { globalState } from "./../store";
 import Login from "./userForms/Login";
 import Register from "./userForms/Register";
-// import NavDrawer from "./shared/NavDrawer";
+import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
 // import DenseTable from "./dashboard/RecentEntryTable";
 import Dashboard from "./dashboard/Dashboard";
@@ -21,14 +21,14 @@ class App extends Component {
     return (
       <Container component="main" maxWidth="xs">
         <BrowserRouter>
-            {/* <NavDrawer /> */}
+            <NavDrawer />
             <div>
               <Route exact path="/" component={Dashboard} render={(props) => <Dashboard {...props} />} />
               {/* <Route exact path="/login" component={Login} /> */}
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />
               <Route exact path="/entry-view" component={ViewEntryForm} />
-              <Route exact path="/allentries" component={AllEntryForm} />
+              <Route exact path="/all-entries" component={AllEntryForm} />
             </div>
         </BrowserRouter>
       </Container>
