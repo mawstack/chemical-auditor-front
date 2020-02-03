@@ -23,37 +23,39 @@ class Login extends Component {
   state = {
     email: "",
     password: ""
-  }
-  
-  handleChange = (input) => (event) => {
-    this.setState({ [input]: event.target.value});
-  }
+  };
 
-  handleSubmit = async (event) => {
+  handleChange = input => event => {
+    this.setState({ [input]: event.target.value });
+  };
+
+  handleSubmit = async event => {
     event.preventDefault();
     const domain = `${process.env.REACT_APP_API_DOMAIN}/login`;
     const { email, password } = this.state;
-    
-    await allowCookiesAxios.post(domain, { email, password })
-      .then((res) => {
+
+    await allowCookiesAxios
+      .post(domain, { email, password })
+      .then(res => {
         console.log(res);
         const jwtToken = cookie.get("jwtToken");
         console.log(jwtToken);
         console.log(this.props);
         this.props.dispatch(setJwtToken(jwtToken));
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
-    
-  }
-  
+  };
+
   render() {
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={useStyles.paper}>
-          <Avatar className={useStyles.avatar}>{/* <LockOutlinedIcon /> */}</Avatar>
+          <Avatar className={useStyles.avatar}>
+            {/* <LockOutlinedIcon /> */}
+          </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -109,7 +111,7 @@ class Login extends Component {
         </Box>
       </Container>
     );
-  };
+  }
 }
 
 function Copyright() {
@@ -146,11 +148,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Giving access to the jwtToken piece-of-state within globalState to Login
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     jwtToken: state.jwtToken
-  }
-}
+  };
+};
 
 // No second argument (i.e. explicit mapDispatchToProps()) = dispatch() automatically added to this.props
 export default connect(mapStateToProps)(Login);

@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <Container component="main" maxWidth="xs">
         <BrowserRouter>
-            {/* <NavDrawer /> */}
+            <NavDrawer />
             <div>
               <Route exact path="/" component={Dashboard} render={(props) => <Dashboard {...props} />} />
               <Route exact path="/login" component={Login} />
