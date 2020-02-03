@@ -68,11 +68,13 @@ class AllEntryView extends Component {
       .get(`${process.env.REACT_APP_API_DOMAIN}/entries`, {
         headers: {
           Authorization:
-            `Bearer ${this.props.jwtToken}`
+            // Static bearer for testing purposes only
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwNzA5NzQxLCJleHAiOjE1ODA3OTYxNDF9.cLEQj3wiq_nhWNTUuFDC2sBcJKVHRWLdDB3n5eiVNfg"
+            // `Bearer ${this.props.jwtToken}`
         }
       })
-      .then(resp => {
-        this.setState({ rows: resp.data });
+      .then(res => {
+        this.setState({ rows: res.data });
       })
       .catch(err => {
         console.log(err);
@@ -114,9 +116,7 @@ class AllEntryView extends Component {
               <StyledTableCell align="right">EHD</StyledTableCell>
               <StyledTableCell align="right">Rate applied</StyledTableCell>
               <StyledTableCell align="right">Quantity applied</StyledTableCell>
-              <StyledTableCell align="right">
-                Equipment method used
-              </StyledTableCell>
+              <StyledTableCell align="right">Equipment method used</StyledTableCell>
               <StyledTableCell align="right">Wind speed</StyledTableCell>
               <StyledTableCell align="right">Wind direction</StyledTableCell>
               <StyledTableCell align="right">Notes</StyledTableCell>
@@ -140,7 +140,7 @@ class AllEntryView extends Component {
                   {row.cropRow}crop
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  {row.chemimcalUsed}chemused
+                  {row.chemicalUsed}chemused
                 </StyledTableCell>
                 <StyledTableCell align="right">{row.whp}whp</StyledTableCell>
                 <StyledTableCell align="right">{row.ehd}ehd</StyledTableCell>
