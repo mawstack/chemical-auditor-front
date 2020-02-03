@@ -30,12 +30,13 @@ class NavButton extends Component {
 
     if(this.state.toViewAllEntries === true) {
       return (
-        <Redirect to="/all-entries" />
+        <Redirect to="/entries" />
         );
     }
 
     if(this.state.toViewSingleEntry === true) {
       return (
+        //needs to be fixed to be dynamic
         <Redirect to="/entry-view" />
         );
     }
