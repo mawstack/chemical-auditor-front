@@ -11,11 +11,18 @@ import Link from "@material-ui/core/Link";
 import RecentEntryTable from "./resources/RecentEntryTable";
 import WeatherBlock from "./resources/WeatherBlock";
 import NavButton from "./resources/NavButton";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
   
   render() {
     const fixedHeightPaper = clsx(styles.paper, styles.fixedHeight);
+
+    // Currently set to only check for presence
+    if (!this.props.jwtToken) {
+      return <Redirect to="/login" />
+    }
 
     return (
       <div className={styles.root}>
@@ -147,4 +154,10 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    jwtToken: state.jwtToken
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);
