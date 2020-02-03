@@ -6,7 +6,6 @@ class EntryView extends Component {
   state = { entry: null }
   
   componentDidMount() {
-    const entryUrl = `${process.env.REACT_APP_API_URL}/entries`
     axios.get(
       //need to get token and accessed url dynamically - 30/1
 
