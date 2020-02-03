@@ -11,7 +11,6 @@ import Link from "@material-ui/core/Link";
 import RecentEntryTable from "./resources/RecentEntryTable";
 import WeatherBlock from "./resources/WeatherBlock";
 import NavButton from "./resources/NavButton";
-// import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
   
