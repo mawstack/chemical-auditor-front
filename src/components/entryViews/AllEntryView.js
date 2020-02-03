@@ -12,6 +12,7 @@ import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import { connect } from "react-redux";
 
 // import AddIcon from "@material-ui/icons/Add";
 // import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -67,7 +68,7 @@ class AllEntryView extends Component {
       .get(`${process.env.REACT_APP_API_DOMAIN}/entries`, {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMzc5ODU0ZjNlNmIwNjE1N2IyNTIxIiwiaWF0IjoxNTgwNDMxNzQ5fQ.0gkCC4B_A4mvsoz0n877js6bsokq7Z-LYWCzeSWwQSE"
+            `Bearer ${this.props.jwtToken}`
         }
       })
       .then(resp => {
@@ -184,4 +185,10 @@ class AllEntryView extends Component {
   }
 }
 
-export default AllEntryView;
+const mapStateToProps = (state) => {
+  return {
+    jwtToken: state.jwtToken
+  }
+}
+
+export default connect(mapStateToProps)(AllEntryView);

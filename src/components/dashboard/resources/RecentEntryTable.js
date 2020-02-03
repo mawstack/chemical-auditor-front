@@ -58,7 +58,7 @@ class RecentEntryTable extends Component {
       .get(`${process.env.REACT_APP_API_DOMAIN}/entries`, {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwNzAxNDE0LCJleHAiOjE1ODA3ODc4MTR9.0xqRW2se98PtkhAFlyESQCbEk30e5efNzOeexvtKr-A"
+            `Bearer ${this.props.jwtToken}`
         }
       })
       .then(resp => {

@@ -19,7 +19,7 @@ class Dashboard extends Component {
   render() {
     const fixedHeightPaper = clsx(styles.paper, styles.fixedHeight);
 
-    // Currently set to only check for presence
+    // Currently set to only check for presence - how to validate with all whitelisted JWT tokens?
     if (!this.props.jwtToken) {
       return <Redirect to="/login" />
     }
@@ -40,13 +40,13 @@ class Dashboard extends Component {
               <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
                   <h1>Current Weather</h1>
-                  <WeatherBlock />
+                  <WeatherBlock jwtToken={this.props.jwtToken} />
                 </Paper>
               </Grid>
               <Grid item xs={12}>
                 <Paper className={styles.paper}>
                   <h1>Recent Entries</h1>
-                  <RecentEntryTable />
+                  <RecentEntryTable jwtToken={this.props.jwtToken} />
                 </Paper>
               </Grid>
             </Grid>

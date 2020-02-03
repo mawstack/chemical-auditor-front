@@ -27,7 +27,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/new-entry" component={EntryForm} />
-              <Route exact path="/entry-view" component={EntryView} />
+              <Route path="/entry-view/:id" component={EntryView} />
               <Route exact path="/all-entries" component={AllEntryView} />
             </div>
         </BrowserRouter>

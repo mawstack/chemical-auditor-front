@@ -32,7 +32,7 @@ export class EntryForm extends Component {
     await fetch(`${process.env.REACT_APP_API_DOMAIN}/entries/new`, {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwNjkxMTA2LCJleHAiOjE1ODA3Nzc1MDZ9.P1YuU9f_8q4bKHCpNMHTw8_g4AYvBuS7c_N_IOZ82Xo"
+          `Bearer ${this.props.jwtToken}`
       }
     })
       .then(res => res.text())
