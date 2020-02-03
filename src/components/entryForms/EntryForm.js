@@ -45,6 +45,14 @@ export class EntryForm extends Component {
         .catch(err => console.log(err));
 
       const { weatherData } = this.state;
+
+      if (weatherData[0] === "<") {
+        this.setState({
+          errorMessage: "Unable to process request, please try again later."
+        });
+        return null;
+      }
+      
       const fullParsedData = JSON.parse(weatherData);
 
       const realSpeed = () => {
