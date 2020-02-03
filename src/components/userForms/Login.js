@@ -18,11 +18,13 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import cookie from "js-cookie";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    toDashboard: false
   }
   
   handleChange = (input) => (event) => {
@@ -36,19 +38,22 @@ class Login extends Component {
     
     await allowCookiesAxios.post(domain, { email, password })
       .then((res) => {
-        console.log(res);
         const jwtToken = cookie.get("jwtToken");
-        console.log(jwtToken);
-        console.log(this.props);
         this.props.dispatch(setJwtToken(jwtToken));
+        this.setState({ toDashboard: true });
       })
       .catch((err) => {
         console.log(err);
       });
-    
   }
   
   render() {
+    if (this.state.toDashboard === true) {
+      return (
+      <Redirect to="/" />
+      );
+    }
+
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
