@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import FormEntryDetails from "./FormEntryDetails";
-import FormAdditionalDetails from "./FormAdditionalDetails";
-import Confirm from "./Confirm";
-import Success from "./Success";
+import FormEntryDetails from "./resources/FormEntryDetails";
+import FormAdditionalDetails from "./resources/FormAdditionalDetails";
+import Confirm from "./resources/Confirm";
+import Success from "./resources/Success";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import { connect } from "react-redux";

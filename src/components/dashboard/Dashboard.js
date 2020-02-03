@@ -8,11 +8,11 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
-import RecentEntryTable from "./RecentEntryTable";
-import WeatherBlock from "./WeatherBlock";
-import NavButton from "./NavButton";
-// import ViewEntryForm from "../entryForms/ViewEntryForm";
-// import AllEntryForm from "../entryForms/AllEntryForms";
+import RecentEntryTable from "./resources/RecentEntryTable";
+import WeatherBlock from "./resources/WeatherBlock";
+import NavButton from "./resources/NavButton";
+// import EntryView from "../entryForms/EntryView";
+// import AllEntryForm from "../entryForms/AllEntryView";
 // import classes from "*.module.css";
 
 class Dashboard extends Component {

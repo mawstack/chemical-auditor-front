@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { List, ListItemText, makeStyles, Typography, CssBaseline, Container, Box } from "@material-ui/core";
 import axios from "axios";
 
-class ViewEntryForm extends Component {
+class EntryView extends Component {
   state = { entry: null }
   
   componentDidMount() {
@@ -104,4 +104,4 @@ const styles = makeStyles(theme => ({
   })
 );
 
-export default ViewEntryForm;
+export default EntryView;
