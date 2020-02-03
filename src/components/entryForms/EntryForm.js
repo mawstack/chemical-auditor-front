@@ -44,10 +44,6 @@ export class EntryForm extends Component {
 
     const { weatherData } = this.state;
     const fullParsedData = JSON.parse(weatherData);
-    this.setState({
-      speed: fullParsedData.speed * 3.6,
-      deg: fullParsedData.deg
-    });
     
     const realSpeed = () => {
       if (Object.prototype.toString.call(fullParsedData.speed) === "[object String]") {
