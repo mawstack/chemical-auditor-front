@@ -2,6 +2,24 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 
 class NavButton extends Component {
+  state = {
+    toNewEntry: false,
+    toViewAllEntries: false,
+    toViewSingleEntry: false
+  }
+
+  newEntryButtonClick = () => {
+    console.log("test");
+  }
+
+  allEntriesButtonClick = () => {
+
+  }
+
+  singleEntryButtonClick = () => {
+    
+  }
+
   render() {
     return(
       <>
@@ -9,7 +27,7 @@ class NavButton extends Component {
           variant="contained"
           color="primary"
           disableElevation
-          onClick={this.props.newEntryButtonClick}
+          onClick={this.newEntryButtonClick}
         >
           Create New Entry
         </Button>
@@ -18,7 +36,7 @@ class NavButton extends Component {
           variant="contained"
           color="primary"
           disableElevation
-          // onClick={this.newEntryButtonClick}
+          onClick={this.allEntriesButtonClick}
         >
           View All Entries
         </Button>
@@ -27,7 +45,7 @@ class NavButton extends Component {
           variant="contained"
           color="primary"
           disableElevation
-          // onClick={this.newEntryButtonClick}
+          onClick={this.singleEntryButtonClick}
           >
             Generate Report
         </Button>

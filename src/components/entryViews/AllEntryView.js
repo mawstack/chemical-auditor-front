@@ -64,7 +64,7 @@ class AllEntryView extends Component {
 
   async apiCall() {
     await axios
-      .get(`${process.env.REACT_APP_API_URL}/entries`, {
+      .get(`${process.env.REACT_APP_API_DOMAIN}/entries`, {
         headers: {
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMzc5ODU0ZjNlNmIwNjE1N2IyNTIxIiwiaWF0IjoxNTgwNDMxNzQ5fQ.0gkCC4B_A4mvsoz0n877js6bsokq7Z-LYWCzeSWwQSE"

@@ -30,7 +30,7 @@ export class Register extends Component {
     const { email, username, password } = this.state;
     const isAdmin = false;
 
-    const registerURL = `${process.env.REACT_APP_API_URL}/users/register`;
+    const registerURL = `${process.env.REACT_APP_API_DOMAIN}/users/register`;
 
     if (this.state.password === this.state.repeatPassword) {
       console.log("Passwords match");

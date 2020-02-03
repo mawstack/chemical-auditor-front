@@ -55,10 +55,10 @@ class RecentEntryTable extends Component {
 
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/entries`, {
+      .get(`${process.env.REACT_APP_API_DOMAIN}/entries`, {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMjZjMTIwOTRkYTUwODFjMmZiZDdiIiwiaWF0IjoxNTgwMzYyNzcwfQ.lI-ifWUazTJCxas67h8oYkhwb0R4IOFrqdIK1LXD2_0"
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwNzAxNDE0LCJleHAiOjE1ODA3ODc4MTR9.0xqRW2se98PtkhAFlyESQCbEk30e5efNzOeexvtKr-A"
         }
       })
       .then(resp => {
@@ -90,7 +90,7 @@ class RecentEntryTable extends Component {
         <Table className={styles.table} size="small" aria-label="a dense table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Date </StyledTableCell>
+              <StyledTableCell>Date</StyledTableCell>
               <StyledTableCell align="right">Starting time</StyledTableCell>
               <StyledTableCell align="right">Finish time</StyledTableCell>
               <StyledTableCell align="right">Name</StyledTableCell>
@@ -103,13 +103,15 @@ class RecentEntryTable extends Component {
                 <StyledTableCell component="th" scope="row">
                   {row.date}
                 </StyledTableCell>
-                {/* {this.renderTable(this.state.response)} */}
-                <StyledTableCell align="right">{row.startTime}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {row.startTime}
+                </StyledTableCell>
                 <StyledTableCell align="right">
                   {row.finishTime}
                 </StyledTableCell>
-                <StyledTableCell align="right">{row.user}</StyledTableCell>
-                <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                <StyledTableCell align="right">
+                  {row.user}
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

@@ -44,7 +44,6 @@ class WeatherBlock extends Component {
       }
     };
     realSpeed();
-    console.log(this.state);
   }
 
   componentDidMount() {

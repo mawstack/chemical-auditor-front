@@ -14,15 +14,6 @@ import NavButton from "./resources/NavButton";
 // import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
-  state = {
-    toNewEntry: false,
-    toViewAllEntries: false,
-    toViewSingleEntry: false
-  }
-
-  newEntryButtonClick = () => {
-    console.log("test");
-  }
   
   render() {
     const fixedHeightPaper = clsx(styles.paper, styles.fixedHeight);
