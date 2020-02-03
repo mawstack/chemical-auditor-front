@@ -42,7 +42,7 @@ const styles = makeStyles({
   }
 });
 
-class AllEntryForms extends Component {
+class AllEntryView extends Component {
   state = {
     response: "",
     date: "",
@@ -184,4 +184,4 @@ class AllEntryForms extends Component {
   }
 }
 
-export default AllEntryForms;
+export default AllEntryView;

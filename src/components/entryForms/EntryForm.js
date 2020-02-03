@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import FormEntryDetails from "./FormEntryDetails";
-import FormAdditionalDetails from "./FormAdditionalDetails";
-import Confirm from "./Confirm";
-import Success from "./Success";
+import FormEntryDetails from "./resources/FormEntryDetails";
+import FormAdditionalDetails from "./resources/FormAdditionalDetails";
+import Confirm from "./resources/Confirm";
+import Success from "./resources/Success";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import { connect } from "react-redux";
 
 export class EntryForm extends Component {
   state = {
@@ -28,7 +29,7 @@ export class EntryForm extends Component {
   };
 
   async callAPI() {
-    await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
+    await fetch(`${process.env.REACT_APP_API_DOMAIN}/entries/new`, {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwNjkxMTA2LCJleHAiOjE1ODA3Nzc1MDZ9.P1YuU9f_8q4bKHCpNMHTw8_g4AYvBuS7c_N_IOZ82Xo"
@@ -61,7 +62,6 @@ export class EntryForm extends Component {
       }
     }
     realSpeed();
-    console.log(this.state);
   }
 
   // Go to next step
@@ -87,6 +87,7 @@ export class EntryForm extends Component {
 
   componentDidMount() {
     this.callAPI();
+    console.log(this.props);
   }
 
   copyright() {
@@ -189,4 +190,10 @@ export class EntryForm extends Component {
   }
 }
 
-export default EntryForm;
+const mapStateToProps = (state) => {
+  return {
+    jwtToken: state.jwtToken
+  }
+}
+
+export default connect(mapStateToProps)(EntryForm);
