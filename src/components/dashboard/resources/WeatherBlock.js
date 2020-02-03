@@ -8,10 +8,10 @@ class WeatherBlock extends Component {
   };
 
   async callAPI() {
-    await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
+    await fetch(`${process.env.REACT_APP_API_DOMAIN}/entries/new`, {
       headers: {
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMzc5ODU0ZjNlNmIwNjE1N2IyNTIxIiwiaWF0IjoxNTgwNDMxNzQ5fQ.0gkCC4B_A4mvsoz0n877js6bsokq7Z-LYWCzeSWwQSE"
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUyYTc2NDk5NTNhZTcxZDVhZmU5ZDdhIiwiaWF0IjoxNTgwNjk0NjI1LCJleHAiOjE1ODA3ODEwMjV9.oL9y2KMkWr_sXN06cAz9-UPc7JMyn3SBqB-fWQIAlA4"
       }
     })
       .then(res => res.text())
