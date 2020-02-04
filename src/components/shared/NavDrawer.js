@@ -13,7 +13,6 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
@@ -63,14 +62,6 @@ function NavDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  /*
-    1. 2 variables holding each state of the sidebar
-    2. Method checking whether user is currently logged in --> Check for JWT token?
-    3. If false, print 'Login' sidebar
-    4. If true, check if user is admin.
-    5. If false, print standard "Logout" & "New Entry" options
-    6. If true, print above as well as "Edit user details" option
-  */
   const history = useHistory();
 
   const logout = async () => {
@@ -147,28 +138,6 @@ function NavDrawer(props) {
     }
   };
 
-  // const isAdmin = () => {
-  //   // Logic to check if user is admin
-  //   if (false) {
-  //     return null;
-  //   } else {
-  //     return (
-  //       <List>
-  //         {["View Users"].map((text, index) => (
-  //           <ListItem button key={text}>
-  //             <ListItemIcon>
-  //               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-  //             </ListItemIcon>
-  //             <ListItemText primary={text} />
-  //           </ListItem>
-  //         ))}
-  //       </List>
-  //     );
-  //   }
-  //};
-
-  const preventDefault = event => event.preventDefault();
-
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -189,7 +158,6 @@ function NavDrawer(props) {
       <Divider />
       {isLoggedIn()}
       <Divider />
-      {/*isAdmin()*/}
     </div>
   );
 
