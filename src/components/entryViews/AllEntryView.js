@@ -13,7 +13,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -84,6 +84,11 @@ class AllEntryView extends Component {
   }
 
   render() {
+
+    if (!this.props.jwtToken) {
+      return <Redirect to="/login" />
+    }
+
     const { rows } = this.state;
 
     return (

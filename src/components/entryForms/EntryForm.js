@@ -6,6 +6,7 @@ import Success from "./resources/Success";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 export class EntryForm extends Component {
   state = {
@@ -30,13 +31,11 @@ export class EntryForm extends Component {
   };
 
   async callAPI() {
-
     try {
       await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
         headers: {
-          Authorization:
-            `Bearer ${this.props.jwtToken}`,
-            // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzNzc1ZTdiYjA1NWEzZGNkYWZjMmY0IiwiaWF0IjoxNTgwNjkyOTY3fQ.DgrfkoBKiKS5v0Z2EPkD-c5PsIT-gqzxwB-flLlmGXQ"
+          Authorization: `Bearer ${this.props.jwtToken}`
+          // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzNzc1ZTdiYjA1NWEzZGNkYWZjMmY0IiwiaWF0IjoxNTgwNjkyOTY3fQ.DgrfkoBKiKS5v0Z2EPkD-c5PsIT-gqzxwB-flLlmGXQ"
         }
       })
         .then(res => res.text())
@@ -55,7 +54,7 @@ export class EntryForm extends Component {
         });
         return null;
       }
-      
+
       const fullParsedData = JSON.parse(weatherData);
 
       const realSpeed = () => {
@@ -159,6 +158,10 @@ export class EntryForm extends Component {
       notes
     };
 
+    if (!this.props.jwtToken) {
+      return <Redirect to="/login" />;
+    }
+
     if (deg) {
       switch (step) {
         case 1:
@@ -205,7 +208,7 @@ export class EntryForm extends Component {
         <div>
           <h3>{errorMessage}</h3>
         </div>
-      )
+      );
     } else {
       return (
         <div>
