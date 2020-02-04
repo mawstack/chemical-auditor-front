@@ -35,7 +35,6 @@ export class EntryForm extends Component {
       await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
         headers: {
           Authorization: `Bearer ${this.props.jwtToken}`
-          // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzNzc1ZTdiYjA1NWEzZGNkYWZjMmY0IiwiaWF0IjoxNTgwNjkyOTY3fQ.DgrfkoBKiKS5v0Z2EPkD-c5PsIT-gqzxwB-flLlmGXQ"
         }
       })
         .then(res => res.text())
@@ -44,13 +43,17 @@ export class EntryForm extends Component {
             weatherData: res
           })
         )
-        .catch(err => console.log(err));
+        .catch(err =>
+          this.setState({
+            errorMessage: `${err} -- Weather service unreachable`
+          })
+        );
 
       const { weatherData } = this.state;
-      console.log(weatherData);
       if (weatherData[0] === "<") {
         this.setState({
-          errorMessage: "Unable to process request, please try again later."
+          errorMessage:
+            "Unable to process request, please try again later -- JWT Token Invalid"
         });
         return null;
       }

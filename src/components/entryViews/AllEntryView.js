@@ -60,7 +60,6 @@ class AllEntryView extends Component {
   };
 
   async apiCall() {
-    console.log(this.props);
     await axios
       .get(`${process.env.REACT_APP_API_URL}/entries`, {
         headers: {

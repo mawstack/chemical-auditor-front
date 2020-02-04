@@ -71,7 +71,7 @@ function NavDrawer(props) {
       .post(domain)
       .then(res => {
         history.push("/login");
-        console.log(res.data);
+        console.log(res);
       })
       .catch(err => {
         console.log(err);
