@@ -15,6 +15,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import axios from "axios";
 
 const drawerWidth = 240;
@@ -83,9 +84,9 @@ function NavDrawer(props) {
         console.log(err);
     });
   };
+  
   const isLoggedIn = () => {
-    // Insert logic to check if logged in
-    if (true) {
+    if (props.jwtToken) {
       return (
         <List>
           <ListItem
@@ -224,4 +225,10 @@ function NavDrawer(props) {
   );
 }
 
-export default NavDrawer;
+const mapStateToProps = (state) => {
+  return {
+    jwtToken: state.jwtToken
+  }
+}
+
+export default connect(mapStateToProps)(NavDrawer);
