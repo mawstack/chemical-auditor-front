@@ -54,8 +54,8 @@ class RecentEntryTable extends Component {
   };
 
   componentDidMount() {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/entries`, {
+    // console.log(this.props);
+    axios.get(`${process.env.REACT_APP_API_URL}/entries`, {
         headers: {
           Authorization:
             `Bearer ${this.props.jwtToken}`
@@ -69,19 +69,6 @@ class RecentEntryTable extends Component {
       });
   }
 
-  // renderTable (a) {
-  //   return a.map( task => {
-  //     return (
-  //       <>
-  //       <StyledTableCell>{task.date}</StyledTableCell>
-  //       <StyledTableCell>{task.startTime}</StyledTableCell>
-  //       <StyledTableCell>{task.finishTime}</StyledTableCell>
-  //       </>
-  //     )
-  //   } )
-
-  // }
-
   render() {
     const { rows } = this.state;
 
@@ -94,7 +81,6 @@ class RecentEntryTable extends Component {
               <StyledTableCell align="right">Starting time</StyledTableCell>
               <StyledTableCell align="right">Finish time</StyledTableCell>
               <StyledTableCell align="right">Name</StyledTableCell>
-              {/* <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell> */}
             </TableRow>
           </TableHead>
           <TableBody>

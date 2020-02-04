@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import { List, ListItemText, makeStyles, Typography, CssBaseline, Container, Box } from "@material-ui/core";
 import axios from "axios";
+import { connect } from "react-redux";
 
 class EntryView extends Component {
   state = { entry: null }
-
+  
   async apiCall() {
+    console.log(this.props);
     await axios.get(`${process.env.REACT_APP_API_URL}/entries/${this.props.match.params.id}`,
       {
         headers: {
           Authorization:
+            // Entry data display issue (start time should display 99 for first entry e.g.)
             `Bearer ${this.props.jwtToken}`
         }
       })
       .then(res => {
+        console.log(res);
         this.setState({ entry: res });
-        console.log(this.state.entry);
       })
       .catch(err => {
         console.log(err);
@@ -109,4 +112,10 @@ const styles = makeStyles(theme => ({
   })
 );
 
-export default EntryView;
+const mapStateToProps = (state) => {
+  return {
+    jwtToken: state.jwtToken
+  }
+}
+
+export default connect(mapStateToProps)(EntryView);

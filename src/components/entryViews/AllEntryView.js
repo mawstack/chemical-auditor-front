@@ -15,11 +15,6 @@ import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-// import AddIcon from "@material-ui/icons/Add";
-// import FavoriteIcon from "@material-ui/icons/Favorite";
-// import NavigationIcon from "@material-ui/icons/Navigation";
-// import Button from "@material-ui/core/Button";
-
 const StyledTableCell = withStyles(theme => ({
   head: {
     backgroundColor: theme.palette.common.black,
@@ -65,6 +60,7 @@ class AllEntryView extends Component {
   };
 
   async apiCall() {
+    console.log(this.props);
     await axios
       .get(`${process.env.REACT_APP_API_URL}/entries`, {
         headers: {
@@ -73,6 +69,9 @@ class AllEntryView extends Component {
         }
       })
       .then(res => {
+        res.data.map((entry) => {
+          entry["link"] = `entries/${entry["_id"]}`;
+        })
         this.setState({ rows: res.data });
       })
       .catch(err => {
@@ -84,19 +83,6 @@ class AllEntryView extends Component {
     this.apiCall();
   }
 
-  // renderTable (a) {
-  //   return a.map( task => {
-  //     return (
-  //       <>
-  //       <StyledTableCell>{task.date}</StyledTableCell>
-  //       <StyledTableCell>{task.startTime}</StyledTableCell>
-  //       <StyledTableCell>{task.finishTime}</StyledTableCell>
-  //       </>
-  //     )
-  //   } )
-
-  // }
-
   render() {
     const { rows } = this.state;
 
@@ -106,6 +92,7 @@ class AllEntryView extends Component {
           <Table className={styles.table} size="small" aria-label="a dense table">
             <TableHead>
               <TableRow>
+                <StyledTableCell align="right">View Entry</StyledTableCell>
                 <StyledTableCell align="right">User </StyledTableCell>
                 <StyledTableCell align="right">Date </StyledTableCell>
                 <StyledTableCell align="right">Starting time</StyledTableCell>
@@ -126,46 +113,70 @@ class AllEntryView extends Component {
             <TableBody>
               {rows.map(row => (
                 <StyledTableRow key={row.name}>
-                  <StyledTableCell align="right">{row.user}user</StyledTableCell>
+                  <StyledTableCell align="right">
+                    <Link to={row.link}>the link</Link>
+                  </StyledTableCell>
+
+                  <StyledTableCell align="right">
+                    {row.user}
+                  </StyledTableCell>
+
                   <StyledTableCell component="th" scope="row">
                     {row.date}
                   </StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.startTime}starttime
+                    {row.startTime}
                   </StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.finishTime}finish
+                    {row.finishTime}
                   </StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.cropRow}crop
+                    {row.cropRow}
                   </StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.chemicalUsed}chemused
+                    {row.chemicalUsed}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.whp}whp</StyledTableCell>
-                  <StyledTableCell align="right">{row.ehd}ehd</StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.rateApplied}rateapply
+                    {row.whp}
                   </StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.quantityApplied}qtyapply
+                    {row.ehd}
                   </StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.equipmentMethodUsed}equipmentuse
+                    {row.rateApplied}
                   </StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.speed}speed
+                    {row.quantityApplied}
                   </StyledTableCell>
-                  <StyledTableCell align="right">{row.deg}deg</StyledTableCell>
+
                   <StyledTableCell align="right">
-                    {row.notes}notes
+                    {row.equipmentMethodUsed}
+                  </StyledTableCell>
+
+                  <StyledTableCell align="right">
+                    {row.speed}
+                  </StyledTableCell>
+
+                  <StyledTableCell align="right">
+                    {row.deg}
+                  </StyledTableCell>
+
+                  <StyledTableCell align="right">
+                    {row.notes}
                     <Fab color="secondary" aria-label="edit">
                       <EditIcon />
                     </Fab>
                   </StyledTableCell>
 
                   <StyledTableCell align="right">
-                    {/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */}
                     <label htmlFor="icon-button-file">
                       <IconButton
                         color="primary"
