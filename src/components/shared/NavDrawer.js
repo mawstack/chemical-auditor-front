@@ -13,8 +13,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import axios from "axios";
 
 const drawerWidth = 240;
@@ -74,25 +76,27 @@ function NavDrawer(props) {
   const logout = async () => {
     const domain = `${process.env.REACT_APP_API_URL}/logout`;
 
-    await axios.post(domain)
+    await axios
+      .post(domain)
       .then(res => {
         history.push("/login");
         console.log(res.data);
       })
       .catch(err => {
         console.log(err);
-    });
+      });
   };
+
   const isLoggedIn = () => {
-    // Insert logic to check if logged in
-    if (true) {
+    if (props.jwtToken) {
       return (
         <List>
           <ListItem
             button
             onClick={() => {
               logout();
-            }}>
+            }}
+          >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -103,7 +107,8 @@ function NavDrawer(props) {
             button
             onClick={() => {
               history.push("/new-entry");
-            }}>
+            }}
+          >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -118,7 +123,8 @@ function NavDrawer(props) {
             button
             onClick={() => {
               history.push("/login");
-            }}>
+            }}
+          >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -129,7 +135,8 @@ function NavDrawer(props) {
             button
             onClick={() => {
               history.push("/register");
-            }}>
+            }}
+          >
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
@@ -160,9 +167,25 @@ function NavDrawer(props) {
   //   }
   //};
 
+  const preventDefault = event => event.preventDefault();
+
   const drawer = (
     <div>
       <div className={classes.toolbar} />
+      <List>
+        <ListItem
+          button
+          onClick={() => {
+            history.push("/");
+          }}
+        >
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
+      </List>
+
       <Divider />
       {isLoggedIn()}
       <Divider />
@@ -224,4 +247,10 @@ function NavDrawer(props) {
   );
 }
 
-export default NavDrawer;
+const mapStateToProps = state => {
+  return {
+    jwtToken: state.jwtToken
+  };
+};
+
+export default connect(mapStateToProps)(NavDrawer);

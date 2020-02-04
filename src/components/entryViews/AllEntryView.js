@@ -181,8 +181,6 @@ class AllEntryView extends Component {
             </TableBody>
           </Table>
         </TableContainer>
-
-        <Link to="/">Back to dashboard</Link>
       </>
     );
   }
