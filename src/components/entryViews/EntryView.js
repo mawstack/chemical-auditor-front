@@ -7,18 +7,16 @@ class EntryView extends Component {
   state = { entry: null }
   
   async apiCall() {
-    console.log(this.props);
     await axios.get(`${process.env.REACT_APP_API_URL}/entries/${this.props.match.params.id}`,
       {
         headers: {
           Authorization:
-            // Entry data display issue (start time should display 99 for first entry e.g.)
             `Bearer ${this.props.jwtToken}`
         }
       })
       .then(res => {
-        console.log(res);
-        this.setState({ entry: res });
+        console.log(res.data);
+        this.setState({ entry: res.data });
       })
       .catch(err => {
         console.log(err);
@@ -31,7 +29,7 @@ class EntryView extends Component {
   
   render() {
     if(!this.state.entry) {
-      return(<h1>Error</h1>)
+      return(<h1>Error - Could not connect to the database.</h1>)
     } else {
       const {
         date,
@@ -39,8 +37,8 @@ class EntryView extends Component {
         finishTime,
         cropRow,
         chemicalUsed,
-        whp,
-        ehd,
+        WHP,
+        EHD,
         rateApplied,
         quantityApplied,
         image,
@@ -55,29 +53,21 @@ class EntryView extends Component {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box className={styles.paper}>
-            <Box id="header">
-              <Typography component="p" variant="p">
-                  Entry (date) - XXX
-              </Typography>
-              <Typography component="p" variant="p">
-                  (Operator Name)
-              </Typography>
-            </Box>
             <List>
               <ListItemText primary="Date: " secondary={date} />
               <ListItemText primary="Start Time: " secondary={startTime} />
               <ListItemText primary="Finish Time: " secondary={finishTime} />
               <ListItemText primary="Crop Row: " secondary={cropRow} />
               <ListItemText primary="Chemical Used " secondary={chemicalUsed} />
-              <ListItemText primary="Witholding Period: " secondary={whp} />
-              <ListItemText primary="Earliest Harvest Date: " secondary={ehd} />
+              <ListItemText primary="Witholding Period: " secondary={WHP} />
+              <ListItemText primary="Earliest Harvest Date: " secondary={EHD} />
               <ListItemText primary="Rate Applied: " secondary={rateApplied} />
               <ListItemText primary="Quantity Applied: " secondary={quantityApplied} />
-              <ListItemText primary="Image: " secondary={image} />
               <ListItemText primary="Equipment Method Used: " secondary={equipmentMethodUsed} />
               <ListItemText primary="Wind Speed: " secondary={speed} />
               <ListItemText primary="Wind Degrees:  " secondary={deg} />
               <ListItemText primary="Notes: " secondary={notes} />
+              <ListItemText primary="Image: " secondary={image} />
             </List>
           </Box>
         </Container>
