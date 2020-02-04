@@ -49,6 +49,7 @@ class Login extends Component {
   };
 
   render() {
+    const register = `http://localhost:3000/register`;
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -99,7 +100,7 @@ class Login extends Component {
             </Button>
             <Grid container>
               <Grid item>
-                <a href={`${this.domain}/register`}>
+                <a href={`${register}`}>
                   Don't have an account? Sign Up
                 </a>
               </Grid>
