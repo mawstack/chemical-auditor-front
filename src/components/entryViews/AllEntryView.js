@@ -12,6 +12,8 @@ import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 // import AddIcon from "@material-ui/icons/Add";
 // import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -64,14 +66,14 @@ class AllEntryView extends Component {
 
   async apiCall() {
     await axios
-      .get(`${process.env.REACT_APP_API_URL}/entries`, {
+      .get(`${process.env.REACT_APP_API_DOMAIN}/entries`, {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzMzc5ODU0ZjNlNmIwNjE1N2IyNTIxIiwiaWF0IjoxNTgwNDMxNzQ5fQ.0gkCC4B_A4mvsoz0n877js6bsokq7Z-LYWCzeSWwQSE"
+            `Bearer ${this.props.jwtToken}`
         }
       })
-      .then(resp => {
-        this.setState({ rows: resp.data });
+      .then(res => {
+        this.setState({ rows: res.data });
       })
       .catch(err => {
         console.log(err);
@@ -99,89 +101,97 @@ class AllEntryView extends Component {
     const { rows } = this.state;
 
     return (
-      <TableContainer component={Paper}>
-        <Table className={styles.table} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="right">User </StyledTableCell>
-              <StyledTableCell align="right">Date </StyledTableCell>
-              <StyledTableCell align="right">Starting time</StyledTableCell>
-              <StyledTableCell align="right">Finish time</StyledTableCell>
-              <StyledTableCell align="right">Crop row</StyledTableCell>
-              <StyledTableCell align="right">Chemical used</StyledTableCell>
-              <StyledTableCell align="right">WHP</StyledTableCell>
-              <StyledTableCell align="right">EHD</StyledTableCell>
-              <StyledTableCell align="right">Rate applied</StyledTableCell>
-              <StyledTableCell align="right">Quantity applied</StyledTableCell>
-              <StyledTableCell align="right">
-                Equipment method used
-              </StyledTableCell>
-              <StyledTableCell align="right">Wind speed</StyledTableCell>
-              <StyledTableCell align="right">Wind direction</StyledTableCell>
-              <StyledTableCell align="right">Notes</StyledTableCell>
-            </TableRow>
-          </TableHead>
+      <>
+        <TableContainer component={Paper}>
+          <Table className={styles.table} size="small" aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <StyledTableCell align="right">User </StyledTableCell>
+                <StyledTableCell align="right">Date </StyledTableCell>
+                <StyledTableCell align="right">Starting time</StyledTableCell>
+                <StyledTableCell align="right">Finish time</StyledTableCell>
+                <StyledTableCell align="right">Crop row</StyledTableCell>
+                <StyledTableCell align="right">Chemical used</StyledTableCell>
+                <StyledTableCell align="right">WHP</StyledTableCell>
+                <StyledTableCell align="right">EHD</StyledTableCell>
+                <StyledTableCell align="right">Rate applied</StyledTableCell>
+                <StyledTableCell align="right">Quantity applied</StyledTableCell>
+                <StyledTableCell align="right">Equipment method used</StyledTableCell>
+                <StyledTableCell align="right">Wind speed</StyledTableCell>
+                <StyledTableCell align="right">Wind direction</StyledTableCell>
+                <StyledTableCell align="right">Notes</StyledTableCell>
+              </TableRow>
+            </TableHead>
 
-          <TableBody>
-            {rows.map(row => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell align="right">{row.user}user</StyledTableCell>
-                <StyledTableCell component="th" scope="row">
-                  {row.date}
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.startTime}starttime
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.finishTime}finish
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.cropRow}crop
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.chemimcalUsed}chemused
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.whp}whp</StyledTableCell>
-                <StyledTableCell align="right">{row.ehd}ehd</StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.rateApplied}rateapply
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.quantityApplied}qtyapply
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.equipmentMethodUsed}equipmentuse
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.speed}speed
-                </StyledTableCell>
-                <StyledTableCell align="right">{row.deg}deg</StyledTableCell>
-                <StyledTableCell align="right">
-                  {row.notes}notes
-                  <Fab color="secondary" aria-label="edit">
-                    <EditIcon />
-                  </Fab>
-                </StyledTableCell>
+            <TableBody>
+              {rows.map(row => (
+                <StyledTableRow key={row.name}>
+                  <StyledTableCell align="right">{row.user}user</StyledTableCell>
+                  <StyledTableCell component="th" scope="row">
+                    {row.date}
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.startTime}starttime
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.finishTime}finish
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.cropRow}crop
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.chemicalUsed}chemused
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.whp}whp</StyledTableCell>
+                  <StyledTableCell align="right">{row.ehd}ehd</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.rateApplied}rateapply
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.quantityApplied}qtyapply
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.equipmentMethodUsed}equipmentuse
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.speed}speed
+                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.deg}deg</StyledTableCell>
+                  <StyledTableCell align="right">
+                    {row.notes}notes
+                    <Fab color="secondary" aria-label="edit">
+                      <EditIcon />
+                    </Fab>
+                  </StyledTableCell>
 
-                <StyledTableCell align="right">
-                  {/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */}
-                  <label htmlFor="icon-button-file">
-                    <IconButton
-                      color="primary"
-                      aria-label="upload picture"
-                      component="span"
-                    >
-                      <PhotoCamera />
-                    </IconButton>
-                  </label>
-                </StyledTableCell>
-              </StyledTableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                  <StyledTableCell align="right">
+                    {/* <input accept="image/*" className={classes.input} id="icon-button-file" type="file" /> */}
+                    <label htmlFor="icon-button-file">
+                      <IconButton
+                        color="primary"
+                        aria-label="upload picture"
+                        component="span"
+                      >
+                        <PhotoCamera />
+                      </IconButton>
+                    </label>
+                  </StyledTableCell>
+                </StyledTableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+        <Link to="/">Back to dashboard</Link>
+      </>
     );
   }
 }
 
-export default AllEntryView;
+const mapStateToProps = (state) => {
+  return {
+    jwtToken: state.jwtToken
+  }
+}
+
+export default connect(mapStateToProps)(AllEntryView);

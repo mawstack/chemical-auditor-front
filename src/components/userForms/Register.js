@@ -30,6 +30,7 @@ export class Register extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     const { email, username, password } = this.state;
+
     const isAdmin = true;
     const registerURL = `${process.env.REACT_APP_API_URL}/users/register`;
 

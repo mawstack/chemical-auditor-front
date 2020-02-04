@@ -36,7 +36,7 @@ class FormAdditionalDetails extends Component {
 
     console.log(this.props);
 
-    const createUrl = `${process.env.REACT_APP_API_URL}/entries/`;
+    const createUrl = `${process.env.REACT_APP_API_DOMAIN}/entries/`;
 
     await Axios.post(createUrl, {
       date,

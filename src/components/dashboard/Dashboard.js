@@ -11,13 +11,18 @@ import Link from "@material-ui/core/Link";
 import RecentEntryTable from "./resources/RecentEntryTable";
 import WeatherBlock from "./resources/WeatherBlock";
 import NavButton from "./resources/NavButton";
-// import EntryView from "../entryForms/EntryView";
-// import AllEntryForm from "../entryForms/AllEntryView";
-// import classes from "*.module.css";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
+  
   render() {
     const fixedHeightPaper = clsx(styles.paper, styles.fixedHeight);
+
+    // Currently set to only check for presence - how to validate with all whitelisted JWT tokens?
+    if (!this.props.jwtToken) {
+      return <Redirect to="/login" />
+    }
 
     return (
       <div className={styles.root}>
@@ -29,19 +34,19 @@ class Dashboard extends Component {
               <Grid item xs={12} md={8} lg={9}>
                 <Paper className={fixedHeightPaper}>
                   <h1>Navigation buttons</h1>
-                  <NavButton />
+                  <NavButton onClick={this.newEntryButtonClick} />
                 </Paper>
               </Grid>
               <Grid item xs={12} md={4} lg={3}>
                 <Paper className={fixedHeightPaper}>
                   <h1>Current Weather</h1>
-                  <WeatherBlock />
+                  <WeatherBlock jwtToken={this.props.jwtToken} />
                 </Paper>
               </Grid>
               <Grid item xs={12}>
                 <Paper className={styles.paper}>
                   <h1>Recent Entries</h1>
-                  <RecentEntryTable />
+                  <RecentEntryTable jwtToken={this.props.jwtToken} />
                 </Paper>
               </Grid>
             </Grid>
@@ -149,4 +154,10 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    jwtToken: state.jwtToken
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard);

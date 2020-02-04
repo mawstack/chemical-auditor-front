@@ -18,12 +18,18 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import cookie from "js-cookie";
+import { Redirect, useHistory } from "react-router-dom";
 
 class Login extends Component {
   state = {
     email: "",
-    password: ""
-  };
+    password: "",
+    toDashboard: false
+  }
+  
+  handleChange = (input) => (event) => {
+    this.setState({ [input]: event.target.value});
+  }
 
   handleChange = input => event => {
     this.setState({ [input]: event.target.value });
@@ -33,23 +39,28 @@ class Login extends Component {
     event.preventDefault();
     const domain = `${process.env.REACT_APP_API_URL}/login`;
     const { email, password } = this.state;
-
-    await allowCookiesAxios
-      .post(domain, { email, password })
-      .then(res => {
-        console.log(res);
+    
+    await allowCookiesAxios.post(domain, { email, password })
+      .then((res) => {
         const jwtToken = cookie.get("jwtToken");
-        console.log(jwtToken);
-        console.log(this.props);
         this.props.dispatch(setJwtToken(jwtToken));
+        this.setState({ toDashboard: true });
       })
       .catch(err => {
         console.log(err);
       });
-  };
+  }
 
   render() {
+    const history = useHistory();
     const register = `http://localhost:3000/register`;
+    
+    if (this.state.toDashboard === true) {
+      return (
+        history.push("/")
+      );
+    }
+    
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
