@@ -5,7 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 // import { globalState } from "./../store";
 import Login from "./userForms/Login";
 import Register from "./userForms/Register";
-// import NavDrawer from "./shared/NavDrawer";
+import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
 // import DenseTable from "./dashboard/RecentEntryTable";
 import Dashboard from "./dashboard/Dashboard";
