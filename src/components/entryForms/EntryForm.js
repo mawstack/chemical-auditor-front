@@ -25,12 +25,13 @@ export class EntryForm extends Component {
     speed: null,
     deg: null,
     notes: "",
-    weatherData: ""
+    weatherData: "",
+    errorMessage: ""
   };
 
   async callAPI() {
     try {
-      await fetch(`${process.env.REACT_APP_API_DOMAIN}/entries/new`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
         headers: {
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzNzc1ZTdiYjA1NWEzZGNkYWZjMmY0IiwiaWF0IjoxNTgwNjkyOTY3fQ.DgrfkoBKiKS5v0Z2EPkD-c5PsIT-gqzxwB-flLlmGXQ"
@@ -45,7 +46,7 @@ export class EntryForm extends Component {
         .catch(err => console.log(err));
 
       const { weatherData } = this.state;
-
+      console.log(weatherData);
       if (weatherData[0] === "<") {
         this.setState({
           errorMessage: "Unable to process request, please try again later."
@@ -104,7 +105,6 @@ export class EntryForm extends Component {
 
   componentDidMount() {
     this.callAPI();
-    console.log(this.props);
   }
 
   copyright() {
@@ -136,7 +136,8 @@ export class EntryForm extends Component {
       equipmentMethodUsed,
       speed,
       deg,
-      notes
+      notes,
+      errorMessage
     } = this.state;
 
     const values = {
@@ -197,6 +198,12 @@ export class EntryForm extends Component {
           <h3>{speed}</h3>
         </div>
       );
+    } else if (errorMessage) {
+      return (
+        <div>
+          <h3>{errorMessage}</h3>
+        </div>
+      )
     } else {
       return (
         <div>

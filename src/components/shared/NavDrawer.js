@@ -73,7 +73,7 @@ function NavDrawer(props) {
   const history = useHistory();
 
   const logout = async () => {
-    const domain = `${process.env.REACT_APP_API_DOMAIN}/logout`;
+    const domain = `${process.env.REACT_APP_API_URL}/logout`;
 
     await axios.post(domain)
       .then(res => {

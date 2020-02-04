@@ -31,7 +31,7 @@ class Login extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    const domain = `${process.env.REACT_APP_API_DOMAIN}/login`;
+    const domain = `${process.env.REACT_APP_API_URL}/login`;
     const { email, password } = this.state;
 
     await allowCookiesAxios
