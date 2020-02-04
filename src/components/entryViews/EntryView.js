@@ -1,19 +1,30 @@
 import React, { Component } from "react";
-import { List, ListItemText, makeStyles, Typography, CssBaseline, Container, Box } from "@material-ui/core";
+import {
+  List,
+  ListItemText,
+  makeStyles,
+  Typography,
+  CssBaseline,
+  Container,
+  Box
+} from "@material-ui/core";
 import axios from "axios";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 class EntryView extends Component {
-  state = { entry: null }
-  
+  state = { entry: null };
+
   async apiCall() {
-    await axios.get(`${process.env.REACT_APP_API_URL}/entries/${this.props.match.params.id}`,
-      {
-        headers: {
-          Authorization:
-            `Bearer ${this.props.jwtToken}`
+    await axios
+      .get(
+        `${process.env.REACT_APP_API_URL}/entries/${this.props.match.params.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.props.jwtToken}`
+          }
         }
-      })
+      )
       .then(res => {
         console.log(res.data);
         this.setState({ entry: res.data });
@@ -26,10 +37,14 @@ class EntryView extends Component {
   componentDidMount() {
     this.apiCall();
   }
-  
+
   render() {
-    if(!this.state.entry) {
-      return(<h1>Error - Could not connect to the database.</h1>)
+    if (!this.props.jwtToken) {
+      return <Redirect to="/login" />;
+    }
+
+    if (!this.state.entry) {
+      return <h1>Error - Could not connect to the database.</h1>;
     } else {
       const {
         date,
@@ -46,10 +61,10 @@ class EntryView extends Component {
         speed,
         deg,
         notes,
-        user,
+        user
       } = this.state.entry;
 
-      return(
+      return (
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Box className={styles.paper}>
@@ -62,8 +77,14 @@ class EntryView extends Component {
               <ListItemText primary="Witholding Period: " secondary={WHP} />
               <ListItemText primary="Earliest Harvest Date: " secondary={EHD} />
               <ListItemText primary="Rate Applied: " secondary={rateApplied} />
-              <ListItemText primary="Quantity Applied: " secondary={quantityApplied} />
-              <ListItemText primary="Equipment Method Used: " secondary={equipmentMethodUsed} />
+              <ListItemText
+                primary="Quantity Applied: "
+                secondary={quantityApplied}
+              />
+              <ListItemText
+                primary="Equipment Method Used: "
+                secondary={equipmentMethodUsed}
+              />
               <ListItemText primary="Wind Speed: " secondary={speed} />
               <ListItemText primary="Wind Degrees:  " secondary={deg} />
               <ListItemText primary="Notes: " secondary={notes} />
@@ -71,41 +92,40 @@ class EntryView extends Component {
             </List>
           </Box>
         </Container>
-      )
+      );
     }
   }
 }
 
 const styles = makeStyles(theme => ({
-    container: {
-      display: "flex",
-      flexWrap: "wrap"
-    },
-    paper: {
-      marginTop: theme.spacing(8),
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center"
-    },
-    form: {
-      width: "100%",
-      marginTop: theme.spacing(1)
-    },
-    submit: {
-      margin: theme.spacing(3, 0, 2)
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 200
-    }
-  })
-);
+  container: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
+  },
+  form: {
+    width: "100%",
+    marginTop: theme.spacing(1)
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2)
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200
+  }
+}));
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     jwtToken: state.jwtToken
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(EntryView);

@@ -25,6 +25,18 @@ class FormEntryDetails extends Component {
           </Typography>
           <form className={styles.form} noValidate>
             <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="user"
+              label="Operator Name"
+              name="user"
+              onChange={handleChange("user")}
+              defaultValue={values.user}
+            />
+            <br />
+            <TextField
               id="date"
               label="Date"
               type="date"
