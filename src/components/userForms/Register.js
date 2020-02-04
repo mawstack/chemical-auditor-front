@@ -9,7 +9,10 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Axios from "axios";
+import allowCookiesAxios from "./../../apis/allowCookiesAxios";
+import { connect } from "react-redux";
+import { setJwtToken } from "./../../actions/index";
+import cookie from "js-cookie";
 
 export class Register extends Component {
   state = {
@@ -22,22 +25,25 @@ export class Register extends Component {
 
   handleChange = input => event => {
     this.setState({ [input]: event.target.value });
-    console.log(this.state);
   };
 
   handleSubmit = async event => {
     event.preventDefault();
     const { email, username, password } = this.state;
-    const isAdmin = false;
 
-    const registerURL = `${process.env.REACT_APP_API_DOMAIN}/users/register`;
+    const isAdmin = true;
+    const registerURL = `${process.env.REACT_APP_API_URL}/users/register`;
 
     if (this.state.password === this.state.repeatPassword) {
       console.log("Passwords match");
-      await Axios.post(registerURL, { email, username, password, isAdmin })
+      await allowCookiesAxios
+        .post(registerURL, { email, username, password, isAdmin })
         .then(res => {
           console.log(res);
-          console.log(res.data);
+          const jwtToken = cookie.get("jwtToken");
+          console.log(jwtToken);
+          console.log(this.props);
+          this.props.dispatch(setJwtToken(jwtToken));
         })
         .catch(err => {
           console.log(err);
@@ -196,4 +202,12 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default Register;
+// Giving access to the jwtToken piece-of-state within globalState to Login
+const mapStateToProps = state => {
+  return {
+    jwtToken: state.jwtToken
+  };
+};
+
+// No second argument (i.e. explicit mapDispatchToProps()) = dispatch() automatically added to this.props
+export default connect(mapStateToProps)(Register);

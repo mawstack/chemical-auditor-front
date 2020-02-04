@@ -15,6 +15,8 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 const drawerWidth = 240;
 
@@ -50,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const NavDrawer = props => {
+function NavDrawer(props) {
   const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -68,57 +70,96 @@ const NavDrawer = props => {
     5. If false, print standard "Logout" & "New Entry" options
     6. If true, print above as well as "Edit user details" option
   */
+  const history = useHistory();
 
+  const logout = async () => {
+    const domain = `${process.env.REACT_APP_API_URL}/logout`;
+
+    await axios.post(domain)
+      .then(res => {
+        history.push("/login");
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+    });
+  };
   const isLoggedIn = () => {
     // Insert logic to check if logged in
     if (true) {
       return (
         <List>
-          {["Logout", "Create new record"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem
+            button
+            onClick={() => {
+              logout();
+            }}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Logout" />
+          </ListItem>
+
+          <ListItem
+            button
+            onClick={() => {
+              history.push("/new-entry");
+            }}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Create new record" />
+          </ListItem>
         </List>
       );
     } else {
       return (
         <List>
-          {["Login", "Register"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem
+            button
+            onClick={() => {
+              history.push("/login");
+            }}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Login" />
+          </ListItem>
+
+          <ListItem
+            button
+            onClick={() => {
+              history.push("/register");
+            }}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Register" />
+          </ListItem>
         </List>
       );
     }
   };
 
-  const isAdmin = () => {
-    // Logic to check if user is admin
-    if (false) {
-      return null;
-    } else {
-      return (
-        <List>
-          {["View Users"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      );
-    }
-  };
+  // const isAdmin = () => {
+  //   // Logic to check if user is admin
+  //   if (false) {
+  //     return null;
+  //   } else {
+  //     return (
+  //       <List>
+  //         {["View Users"].map((text, index) => (
+  //           <ListItem button key={text}>
+  //             <ListItemIcon>
+  //               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+  //             </ListItemIcon>
+  //             <ListItemText primary={text} />
+  //           </ListItem>
+  //         ))}
+  //       </List>
+  //     );
+  //   }
+  //};
 
   const drawer = (
     <div>
@@ -126,7 +167,7 @@ const NavDrawer = props => {
       <Divider />
       {isLoggedIn()}
       <Divider />
-      {isAdmin()}
+      {/*isAdmin()*/}
     </div>
   );
 
@@ -182,6 +223,6 @@ const NavDrawer = props => {
       </nav>
     </div>
   );
-};
+}
 
 export default NavDrawer;

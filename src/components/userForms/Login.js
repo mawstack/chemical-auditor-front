@@ -18,7 +18,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import cookie from "js-cookie";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -31,9 +31,13 @@ class Login extends Component {
     this.setState({ [input]: event.target.value});
   }
 
-  handleSubmit = async (event) => {
+  handleChange = input => event => {
+    this.setState({ [input]: event.target.value });
+  };
+
+  handleSubmit = async event => {
     event.preventDefault();
-    const domain = `${process.env.REACT_APP_API_DOMAIN}/login`;
+    const domain = `${process.env.REACT_APP_API_URL}/login`;
     const { email, password } = this.state;
     
     await allowCookiesAxios.post(domain, { email, password })
@@ -42,23 +46,28 @@ class Login extends Component {
         this.props.dispatch(setJwtToken(jwtToken));
         this.setState({ toDashboard: true });
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }
-  
+
   render() {
+    const history = useHistory();
+    const register = `http://localhost:3000/register`;
+    
     if (this.state.toDashboard === true) {
       return (
-      <Redirect to="/" />
+        history.push("/")
       );
     }
-
+    
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={useStyles.paper}>
-          <Avatar className={useStyles.avatar}>{/* <LockOutlinedIcon /> */}</Avatar>
+          <Avatar className={useStyles.avatar}>
+            {/* <LockOutlinedIcon /> */}
+          </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -102,7 +111,7 @@ class Login extends Component {
             </Button>
             <Grid container>
               <Grid item>
-                <a href={`${this.domain}/register`}>
+                <a href={`${register}`}>
                   Don't have an account? Sign Up
                 </a>
               </Grid>
@@ -114,7 +123,7 @@ class Login extends Component {
         </Box>
       </Container>
     );
-  };
+  }
 }
 
 function Copyright() {
@@ -151,11 +160,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Giving access to the jwtToken piece-of-state within globalState to Login
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     jwtToken: state.jwtToken
-  }
-}
+  };
+};
 
 // No second argument (i.e. explicit mapDispatchToProps()) = dispatch() automatically added to this.props
 export default connect(mapStateToProps)(Login);

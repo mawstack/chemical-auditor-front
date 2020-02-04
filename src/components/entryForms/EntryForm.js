@@ -25,43 +25,63 @@ export class EntryForm extends Component {
     speed: null,
     deg: null,
     notes: "",
-    weatherData: ""
+    weatherData: "",
+    errorMessage: ""
   };
 
   async callAPI() {
-    await fetch(`${process.env.REACT_APP_API_DOMAIN}/entries/new`, {
-      headers: {
-        Authorization:
-          `Bearer ${this.props.jwtToken}`
-      }
-    })
-      .then(res => res.text())
-      .then(res =>
-        this.setState({
-          weatherData: res
-        })
-      )
-      .catch(err => console.log(err));
 
-    const { weatherData } = this.state;
-    const fullParsedData = JSON.parse(weatherData);
-    
-    const realSpeed = () => {
-      if (Object.prototype.toString.call(fullParsedData.speed) === "[object String]") {
-        this.setState({
-          speed: fullParsedData.speed,
-          deg: null
-        })
-      } else {
-        const realSpeed = Math.round ((fullParsedData.speed * 3.6) * 10) / 10;
+    try {
+      await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
+        headers: {
+          Authorization:
+            `Bearer ${this.props.jwtToken}`,
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzNzc1ZTdiYjA1NWEzZGNkYWZjMmY0IiwiaWF0IjoxNTgwNjkyOTY3fQ.DgrfkoBKiKS5v0Z2EPkD-c5PsIT-gqzxwB-flLlmGXQ"
+        }
+      })
+        .then(res => res.text())
+        .then(res =>
+          this.setState({
+            weatherData: res
+          })
+        )
+        .catch(err => console.log(err));
 
+      const { weatherData } = this.state;
+      console.log(weatherData);
+      if (weatherData[0] === "<") {
         this.setState({
-          speed: realSpeed,
-          deg: fullParsedData.deg
+          errorMessage: "Unable to process request, please try again later."
         });
+        return null;
       }
+      
+      const fullParsedData = JSON.parse(weatherData);
+
+      const realSpeed = () => {
+        if (
+          Object.prototype.toString.call(fullParsedData.speed) ===
+          "[object String]"
+        ) {
+          this.setState({
+            speed: fullParsedData.speed,
+            deg: null
+          });
+        } else {
+          const realSpeed = Math.round(fullParsedData.speed * 3.6 * 10) / 10;
+
+          this.setState({
+            speed: realSpeed,
+            deg: fullParsedData.deg
+          });
+        }
+      };
+      realSpeed();
+    } catch {
+      this.setState({
+        speed: "Unable to reach server, please try again"
+      });
     }
-    realSpeed();
   }
 
   // Go to next step
@@ -87,7 +107,6 @@ export class EntryForm extends Component {
 
   componentDidMount() {
     this.callAPI();
-    console.log(this.props);
   }
 
   copyright() {
@@ -119,7 +138,8 @@ export class EntryForm extends Component {
       equipmentMethodUsed,
       speed,
       deg,
-      notes
+      notes,
+      errorMessage
     } = this.state;
 
     const values = {
@@ -174,26 +194,32 @@ export class EntryForm extends Component {
         default:
           return null;
       }
-    } else if (Object.prototype.toString.call(speed) === "[object String]"){
+    } else if (Object.prototype.toString.call(speed) === "[object String]") {
       return (
-      <div>
-        <h3>{speed}</h3>
-      </div>
+        <div>
+          <h3>{speed}</h3>
+        </div>
       );
+    } else if (errorMessage) {
+      return (
+        <div>
+          <h3>{errorMessage}</h3>
+        </div>
+      )
     } else {
       return (
-      <div>
-        <h3>Loading...</h3>
-      </div>
+        <div>
+          <h3>Loading...</h3>
+        </div>
       );
     }
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     jwtToken: state.jwtToken
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps)(EntryForm);
