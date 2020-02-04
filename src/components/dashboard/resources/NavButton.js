@@ -17,9 +17,7 @@ class NavButton extends Component {
     this.setState({ toViewAllEntries: true });
   }
 
-  singleEntryButtonClick = () => {
-    this.setState({ toViewSingleEntry: true });
-  }
+  //Need Generate Report button logic AFTER component + functionality is built
 
   render() {
     if(this.state.toNewEntry === true) {
@@ -65,7 +63,6 @@ class NavButton extends Component {
           variant="contained"
           color="primary"
           disableElevation
-          onClick={this.singleEntryButtonClick}
           >
             Generate Report
         </Button>

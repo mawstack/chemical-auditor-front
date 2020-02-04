@@ -13,6 +13,7 @@ import allowCookiesAxios from "./../../apis/allowCookiesAxios";
 import { connect } from "react-redux";
 import { setJwtToken } from "./../../actions/index";
 import cookie from "js-cookie";
+import { Redirect } from "react-router-dom";
 
 export class Register extends Component {
   state = {
@@ -20,7 +21,8 @@ export class Register extends Component {
     username: "",
     password: "",
     repeatPassword: "",
-    passwordMatch: true
+    passwordMatch: true,
+    toDashboard: false
   };
 
   handleChange = input => event => {
@@ -44,6 +46,7 @@ export class Register extends Component {
           console.log(jwtToken);
           console.log(this.props);
           this.props.dispatch(setJwtToken(jwtToken));
+          this.setState({ toDashboard: true });
         })
         .catch(err => {
           console.log(err);
@@ -98,6 +101,12 @@ export class Register extends Component {
   }
 
   render() {
+    if (this.state.toDashboard === true) {
+      return(
+        <Redirect to="/" />
+      )
+    }
+
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />

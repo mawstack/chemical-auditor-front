@@ -26,7 +26,6 @@ class EntryView extends Component {
         }
       )
       .then(res => {
-        console.log(res.data);
         this.setState({ entry: res.data });
       })
       .catch(err => {

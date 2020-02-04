@@ -7,7 +7,6 @@ import Login from "./userForms/Login";
 import Register from "./userForms/Register";
 import NavDrawer from "./shared/NavDrawer";
 import EntryForm from "./entryForms/EntryForm";
-// import DenseTable from "./dashboard/RecentEntryTable";
 import Dashboard from "./dashboard/Dashboard";
 import Container from "@material-ui/core/Container";
 import EntryView from "./entryViews/EntryView";
