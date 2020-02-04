@@ -6,7 +6,7 @@ class EntryView extends Component {
   state = { entry: null }
 
   async apiCall() {
-    await axios.get(`${process.env.REACT_APP_API_DOMAIN}/entries/${this.props.match.params.id}`,
+    await axios.get(`${process.env.REACT_APP_API_URL}/entries/${this.props.match.params.id}`,
       {
         headers: {
           Authorization:
