@@ -141,25 +141,25 @@ function NavDrawer(props) {
     }
   };
 
-  const isAdmin = () => {
-    // Logic to check if user is admin
-    if (false) {
-      return null;
-    } else {
-      return (
-        <List>
-          {["View Users"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      );
-    }
-  };
+  // const isAdmin = () => {
+  //   // Logic to check if user is admin
+  //   if (false) {
+  //     return null;
+  //   } else {
+  //     return (
+  //       <List>
+  //         {["View Users"].map((text, index) => (
+  //           <ListItem button key={text}>
+  //             <ListItemIcon>
+  //               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+  //             </ListItemIcon>
+  //             <ListItemText primary={text} />
+  //           </ListItem>
+  //         ))}
+  //       </List>
+  //     );
+  //   }
+  //};
 
   const drawer = (
     <div>
@@ -167,7 +167,7 @@ function NavDrawer(props) {
       <Divider />
       {isLoggedIn()}
       <Divider />
-      {isAdmin()}
+      {/*isAdmin()*/}
     </div>
   );
 
