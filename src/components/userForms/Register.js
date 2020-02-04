@@ -31,13 +31,12 @@ export class Register extends Component {
     event.preventDefault();
     const { email, username, password } = this.state;
 
-    const isAdmin = true;
     const registerURL = `${process.env.REACT_APP_API_URL}/users/register`;
 
     if (this.state.password === this.state.repeatPassword) {
       console.log("Passwords match");
       await allowCookiesAxios
-        .post(registerURL, { email, username, password, isAdmin })
+        .post(registerURL, { email, username, password })
         .then(res => {
           console.log(res);
           const jwtToken = cookie.get("jwtToken");
