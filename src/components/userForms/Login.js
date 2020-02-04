@@ -18,7 +18,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import cookie from "js-cookie";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -30,10 +30,6 @@ class Login extends Component {
   handleChange = (input) => (event) => {
     this.setState({ [input]: event.target.value});
   }
-
-  handleChange = input => event => {
-    this.setState({ [input]: event.target.value });
-  };
 
   handleSubmit = async event => {
     event.preventDefault();
@@ -52,13 +48,12 @@ class Login extends Component {
   }
 
   render() {
-    const history = useHistory();
     const register = `http://localhost:3000/register`;
     
     if (this.state.toDashboard === true) {
-      return (
-        history.push("/")
-      );
+      return(
+        <Redirect to="/" />
+      )
     }
     
     return (

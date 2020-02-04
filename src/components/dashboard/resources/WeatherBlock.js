@@ -13,8 +13,8 @@ class WeatherBlock extends Component {
     await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
       headers: {
         Authorization:
-          //`Bearer ${this.props.jwtToken}`
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzNzc1ZTdiYjA1NWEzZGNkYWZjMmY0IiwiaWF0IjoxNTgwNjkyOTY3fQ.DgrfkoBKiKS5v0Z2EPkD-c5PsIT-gqzxwB-flLlmGXQ"
+          `Bearer ${this.props.jwtToken}`
+          // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzNzc1ZTdiYjA1NWEzZGNkYWZjMmY0IiwiaWF0IjoxNTgwNjkyOTY3fQ.DgrfkoBKiKS5v0Z2EPkD-c5PsIT-gqzxwB-flLlmGXQ"
       }
     })
       .then(res => res.text())
@@ -62,7 +62,6 @@ class WeatherBlock extends Component {
       this.setState({
         dir: dir
       })
-      console.log(dir)
     }
     realSpeed();
 
