@@ -60,6 +60,7 @@ class AllEntryView extends Component {
   };
 
   async apiCall() {
+    console.log(this.props);
     await axios
       .get(`${process.env.REACT_APP_API_URL}/entries`, {
         headers: {
@@ -68,13 +69,9 @@ class AllEntryView extends Component {
         }
       })
       .then(res => {
-        console.log(typeof res.data);
-        console.log(res.data);
-        //map each json object in res data (typeof = object, despite looking like an array in console.log) and add a Link corresponding to its id
         res.data.map((entry) => {
-          entry["link"] = `${process.env.REACT_APP_API_URL}/${entry["_id"]}`;
+          entry["link"] = `entries/${entry["_id"]}`;
         })
-        console.log(res.data);
         this.setState({ rows: res.data });
       })
       .catch(err => {
@@ -117,7 +114,7 @@ class AllEntryView extends Component {
               {rows.map(row => (
                 <StyledTableRow key={row.name}>
                   <StyledTableCell align="right">
-                    {row.link}
+                    <Link to={row.link}>the link</Link>
                   </StyledTableCell>
 
                   <StyledTableCell align="right">
