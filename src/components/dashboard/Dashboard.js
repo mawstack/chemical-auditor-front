@@ -8,7 +8,6 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
-import RecentEntryTable from "./resources/RecentEntryTable";
 import WeatherBlock from "./resources/WeatherBlock";
 import NavButton from "./resources/NavButton";
 import { connect } from "react-redux";
@@ -40,12 +39,6 @@ class Dashboard extends Component {
                 <Paper className={fixedHeightPaper}>
                   <h1>Current Weather</h1>
                   <WeatherBlock jwtToken={this.props.jwtToken} />
-                </Paper>
-              </Grid>
-              <Grid item xs={12}>
-                <Paper className={styles.paper}>
-                  <h1>Recent Entries</h1>
-                  <RecentEntryTable jwtToken={this.props.jwtToken} />
                 </Paper>
               </Grid>
             </Grid>
