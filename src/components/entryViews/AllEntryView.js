@@ -69,7 +69,7 @@ class AllEntryView extends Component {
       })
       .then(res => {
         res.data.map((entry) => {
-          entry["link"] = `entries/${entry["_id"]}`;
+          return entry["link"] = `entries/${entry["_id"]}`;
         })
         this.setState({ rows: res.data });
       })

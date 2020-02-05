@@ -19,30 +19,18 @@ class NavButton extends Component {
     this.setState({ toViewAllEntries: true });
   };
 
-  handleButtonClick = (event) => {
+  reportButtonClick = (event) => {
     event.preventDefault();
-    console.log("test!", event);
-  
-    //To set pdfTrigger to true
     this.props.dispatch(setPdfTrigger(true))
   }
 
   render() {
-    console.log(this.props);
-
     if (this.state.toNewEntry === true) {
       return <Redirect to="/new-entry" />;
     }
 
     if (this.state.toViewAllEntries === true) {
       return <Redirect to="/entries" />;
-    }
-
-    if (this.state.toViewSingleEntry === true) {
-      return (
-        //needs to be fixed to be dynamic
-        <Redirect to="/entry-view" />
-      );
     }
 
     return (
@@ -69,7 +57,7 @@ class NavButton extends Component {
           variant="contained"
           color="primary"
           disableElevation
-          onClick={this.handleButtonClick}
+          onClick={this.reportButtonClick}
         >
           Generate Report
         </Button>
