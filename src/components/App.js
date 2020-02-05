@@ -11,21 +11,13 @@ import Container from "@material-ui/core/Container";
 import EntryView from "./entryViews/EntryView";
 import AllEntryView from "./entryViews/AllEntryView";
 import Report from "./pdf-generator/Report";
-import { PDFViewer } from "@react-pdf/renderer";
 require("dotenv").config();
 
 class App extends Component {
-
-
   render() {
     const { pdfTrigger } = this.props;
     if (pdfTrigger) {
-      return (
-        // <PDFViewer>
-        //   <Report />
-        // </PDFViewer>
-        <div>Hello!</div>
-      );
+      return <Report />
     }
 
     return (

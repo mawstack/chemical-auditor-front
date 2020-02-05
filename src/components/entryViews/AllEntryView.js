@@ -118,7 +118,7 @@ class AllEntryView extends Component {
               {rows.map(row => (
                 <StyledTableRow key={row.name}>
                   <StyledTableCell align="right">
-                    <Link to={row.link}>the link</Link>
+                    <Link to={row.link}>Link</Link>
                   </StyledTableCell>
 
                   <StyledTableCell align="right">
