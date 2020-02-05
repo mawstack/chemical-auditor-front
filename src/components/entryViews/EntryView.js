@@ -3,7 +3,6 @@ import {
   List,
   ListItemText,
   makeStyles,
-  Typography,
   CssBaseline,
   Container,
   Box
@@ -59,8 +58,7 @@ class EntryView extends Component {
         equipmentMethodUsed,
         speed,
         deg,
-        notes,
-        user
+        notes
       } = this.state.entry;
 
       return (
