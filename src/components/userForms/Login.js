@@ -45,7 +45,7 @@ class Login extends Component {
   }
 
   render() {
-    const register = `http://localhost:3000/register`;
+    const register = `${process.env.REACT_APP_URL}/register`;
     
     if (this.state.toDashboard === true) {
       return(
@@ -58,7 +58,6 @@ class Login extends Component {
         <CssBaseline />
         <div className={useStyles.paper}>
           <Avatar className={useStyles.avatar}>
-            {/* <LockOutlinedIcon /> */}
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
