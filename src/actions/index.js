@@ -32,3 +32,10 @@ export const setJwtToken = (token = null) => {
     payload: token
   }
 }
+
+export const setPdfTrigger = (pdfTrigger = null, action) => {
+  return {
+    type: "PDF_TRIGGER",
+    payload: pdfTrigger
+  }
+}

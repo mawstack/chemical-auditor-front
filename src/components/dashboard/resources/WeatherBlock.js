@@ -12,9 +12,7 @@ class WeatherBlock extends Component {
   async callAPI() {
     await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
       headers: {
-        Authorization:
-          `Bearer ${this.props.jwtToken}`
-          // "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoiNWUzNzc1ZTdiYjA1NWEzZGNkYWZjMmY0IiwiaWF0IjoxNTgwNjkyOTY3fQ.DgrfkoBKiKS5v0Z2EPkD-c5PsIT-gqzxwB-flLlmGXQ"
+        Authorization: `Bearer ${this.props.jwtToken}`
       }
     })
       .then(res => res.text())
@@ -23,17 +21,22 @@ class WeatherBlock extends Component {
           weatherData: res
         })
       )
-      .catch(err => console.log(err));
+      .catch(err =>
+        this.setState({
+          errorMessage: `${err} -- Weather service unreachable`
+        })
+      );
 
     const { weatherData } = this.state;
-    
+
     if (weatherData[0] === "<") {
       this.setState({
-        errorMessage: "Unable to process request, please try again later."
+        errorMessage:
+          "Unable to process request, please try again later -- JWT Token Invalid"
       });
       return null;
     }
-    
+
     const fullParsedData = JSON.parse(weatherData);
 
     const realSpeed = () => {
@@ -55,14 +58,31 @@ class WeatherBlock extends Component {
       }
     };
     const degToCompass = () => {
-      const num = this.state.deg
-      const val = Math.floor((num / 22.5) + 0.5);
-      const arr = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
-      const dir = arr[(val % 16)];
+      const num = this.state.deg;
+      const val = Math.floor(num / 22.5 + 0.5);
+      const arr = [
+        "N",
+        "NNE",
+        "NE",
+        "ENE",
+        "E",
+        "ESE",
+        "SE",
+        "SSE",
+        "S",
+        "SSW",
+        "SW",
+        "WSW",
+        "W",
+        "WNW",
+        "NW",
+        "NNW"
+      ];
+      const dir = arr[val % 16];
       this.setState({
         dir: dir
-      })
-    }
+      });
+    };
     realSpeed();
 
     degToCompass();
@@ -85,9 +105,7 @@ class WeatherBlock extends Component {
           </ul>
         </div>
       );
-    } else if (
-      Object.prototype.toString.call(speed) === "[object String]"
-    ) {
+    } else if (Object.prototype.toString.call(speed) === "[object String]") {
       return (
         <div>
           <h3>{speed}</h3>
@@ -98,7 +116,7 @@ class WeatherBlock extends Component {
         <div>
           <h3>{errorMessage}</h3>
         </div>
-      )
+      );
     } else {
       return (
         <div>

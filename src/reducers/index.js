@@ -3,7 +3,9 @@
 
 import { combineReducers } from "redux";
 import jwtReducer from "./jwt_reducer";
+import pdfTriggerReducer from "./pdf_trigger_reducer";
 
 export default combineReducers({
-  jwtToken: jwtReducer
+  jwtToken: jwtReducer,
+  pdfTrigger: pdfTriggerReducer
 });

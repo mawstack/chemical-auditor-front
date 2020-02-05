@@ -36,14 +36,11 @@ export class Register extends Component {
     const registerURL = `${process.env.REACT_APP_API_URL}/users/register`;
 
     if (this.state.password === this.state.repeatPassword) {
-      console.log("Passwords match");
       await allowCookiesAxios
         .post(registerURL, { email, username, password })
         .then(res => {
           console.log(res);
           const jwtToken = cookie.get("jwtToken");
-          console.log(jwtToken);
-          console.log(this.props);
           this.props.dispatch(setJwtToken(jwtToken));
           this.setState({ toDashboard: true });
         })
@@ -58,7 +55,6 @@ export class Register extends Component {
       });
       this.setState({ passwordMatch: true });
     } else {
-      console.log("Passwords do not match, please try again");
       this.setState({ passwordMatch: false });
     }
   };

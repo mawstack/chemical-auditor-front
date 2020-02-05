@@ -34,8 +34,6 @@ class FormAdditionalDetails extends Component {
       deg
     } = this.props;
 
-    console.log(this.props);
-
     const createUrl = `${process.env.REACT_APP_API_URL}/entries/`;
 
     await Axios.post(createUrl, {
@@ -56,7 +54,6 @@ class FormAdditionalDetails extends Component {
     })
       .then(res => {
         console.log(res);
-        console.log(res.data);
       })
       .catch(err => {
         console.log(err);
