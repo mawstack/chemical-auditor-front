@@ -1,45 +1,51 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { setPdfTrigger } from "./../../../actions/index";
 
 class NavButton extends Component {
   state = {
     toNewEntry: false,
     toViewAllEntries: false,
     toViewSingleEntry: false
-  }
+  };
 
   newEntryButtonClick = () => {
     this.setState({ toNewEntry: true });
-  }
+  };
 
   allEntriesButtonClick = () => {
     this.setState({ toViewAllEntries: true });
+  };
+
+  handleButtonClick = (event) => {
+    event.preventDefault();
+    console.log("test!", event);
+  
+    //To set pdfTrigger to true
+    this.props.dispatch(setPdfTrigger(true))
   }
 
-  //Need Generate Report button logic AFTER component + functionality is built
-
   render() {
-    if(this.state.toNewEntry === true) {
-      return (
-        <Redirect to="/new-entry" />
-        );
+    console.log(this.props);
+
+    if (this.state.toNewEntry === true) {
+      return <Redirect to="/new-entry" />;
     }
 
-    if(this.state.toViewAllEntries === true) {
-      return (
-        <Redirect to="/entries" />
-        );
+    if (this.state.toViewAllEntries === true) {
+      return <Redirect to="/entries" />;
     }
 
-    if(this.state.toViewSingleEntry === true) {
+    if (this.state.toViewSingleEntry === true) {
       return (
         //needs to be fixed to be dynamic
         <Redirect to="/entry-view" />
-        );
+      );
     }
 
-    return(
+    return (
       <>
         <Button
           variant="contained"
@@ -63,12 +69,19 @@ class NavButton extends Component {
           variant="contained"
           color="primary"
           disableElevation
-          >
-            Generate Report
+          onClick={this.handleButtonClick}
+        >
+          Generate Report
         </Button>
       </>
     );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    pdfTrigger: state.pdfTrigger
   };
 }
 
-export default NavButton;
+export default connect(mapStateToProps)(NavButton);

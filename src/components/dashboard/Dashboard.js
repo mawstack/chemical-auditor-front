@@ -17,7 +17,6 @@ class Dashboard extends Component {
   
   render() {
     const fixedHeightPaper = clsx(styles.paper, styles.fixedHeight);
-
     if (!this.props.jwtToken) {
       return <Redirect to="/login" />
     }
