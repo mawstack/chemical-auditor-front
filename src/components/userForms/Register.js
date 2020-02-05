@@ -39,7 +39,6 @@ export class Register extends Component {
       await allowCookiesAxios
         .post(registerURL, { email, username, password })
         .then(res => {
-          console.log(res);
           const jwtToken = cookie.get("jwtToken");
           this.props.dispatch(setJwtToken(jwtToken));
           this.setState({ toDashboard: true });

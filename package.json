@@ -27,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "git checkout master && npm run build && aws s3 sync build/ s3://chemical-auditor-mawstack"
+    "deployaws": "git checkout master && npm run build && aws s3 sync build/ s3://chemical-auditor-mawstack"
   },
   "eslintConfig": {
     "extends": "react-app"
