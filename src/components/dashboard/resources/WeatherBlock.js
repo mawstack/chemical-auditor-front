@@ -10,11 +10,11 @@ class WeatherBlock extends Component {
   };
 
   async callAPI() {
-    await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
-      headers: {
-        Authorization: `Bearer ${this.props.jwtToken}`
-      }
-    })
+    await fetch(`${process.env.REACT_APP_API_URL}/entries/new`
+      // headers: {
+      //   Authorization: `Bearer ${this.props.jwtToken}`
+      // }
+    )
       .then(res => res.text())
       .then(res =>
         this.setState({

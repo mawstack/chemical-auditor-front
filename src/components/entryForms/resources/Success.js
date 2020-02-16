@@ -4,9 +4,23 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { Redirect } from "react-router-dom";
 
 class Success extends Component {
+  state = {
+    toDash: false,
+    toEntry: false
+  }
+
   render() {
+    if (this.state.toDash === true) {
+      return <Redirect to="/" />;
+    }
+
+    if (this.state.toEntry === true) {
+      return <Redirect to="/entries" />;
+    }
+
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -20,6 +34,9 @@ class Success extends Component {
               fullWidth
               variant="contained"
               color="primary"
+              onClick={() => {
+                this.setState({ toEntry: true })
+              }}
             >View Entry</Button>
             <br />
             <Button
@@ -28,6 +45,9 @@ class Success extends Component {
               fullWidth
               variant="contained"
               color="primary"
+              onClick={() => {
+                this.setState({ toDash: true })
+              }}
             >View Dashboard</Button>
         </div>
       </Container>

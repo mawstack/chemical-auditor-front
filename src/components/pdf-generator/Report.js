@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { savePDF } from "@progress/kendo-react-pdf";
 import axios from "axios";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 
 class Report extends Component {
   state = {
@@ -28,14 +28,16 @@ class Report extends Component {
 
   async apiCall() {
     await axios
-      .get(`${process.env.REACT_APP_API_URL}/entries`, {
-        headers: {
-          Authorization: `Bearer ${this.props.jwtToken}`
-        }
-      })
+      .get(
+        `${process.env.REACT_APP_API_URL}/entries`
+        // headers: {
+        //   Authorization: `Bearer ${this.props.jwtToken}`
+        // }
+      )
       .then(res => {
         res.data.map(entry => {
           entry["link"] = `entries/${entry["_id"]}`;
+          return null; // Let's squash an error with a lovely null!
         });
         this.setState({ rows: res.data });
       })
@@ -49,7 +51,6 @@ class Report extends Component {
   }
 
   render() {
-
     return (
       <div>
         <div className="example-config">
@@ -122,10 +123,11 @@ class Report extends Component {
   };
 }
 
-const mapStateToProps = (state) => {
-  return {
-    jwtToken: state.jwtToken
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     jwtToken: state.jwtToken
+//   };
+// };
 
-export default connect(mapStateToProps)(Report);
+// export default connect(mapStateToProps)(Report);
+export default Report;

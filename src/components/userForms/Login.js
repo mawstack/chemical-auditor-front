@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import allowCookiesAxios from "./../../apis/allowCookiesAxios";
-import { connect } from "react-redux";
-import { setJwtToken } from "./../../actions/index";
+// import allowCookiesAxios from "./../../apis/allowCookiesAxios";
+// import { connect } from "react-redux";
+// import { setJwtToken } from "./../../actions/index";
 import { Link } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -14,51 +14,57 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import cookie from "js-cookie";
+// import cookie from "js-cookie";
 import { Redirect } from "react-router-dom";
+import Axios from "axios";
 
 class Login extends Component {
   state = {
     email: "",
     password: "",
     toDashboard: false
-  }
-  
-  handleChange = (input) => (event) => {
-    this.setState({ [input]: event.target.value});
-  }
+  };
+
+  handleChange = input => event => {
+    this.setState({ [input]: event.target.value });
+  };
 
   handleSubmit = async event => {
     event.preventDefault();
     const domain = `${process.env.REACT_APP_API_URL}/login`;
     const { email, password } = this.state;
-    
-    await allowCookiesAxios.post(domain, { email, password })
-      .then((res) => {
-        const jwtToken = cookie.get("jwtToken");
-        this.props.dispatch(setJwtToken(jwtToken));
+
+    // await allowCookiesAxios.post(domain, { email, password })
+    //   .then((res) => {
+    //     const jwtToken = cookie.get("jwtToken");
+    //     this.props.dispatch(setJwtToken(jwtToken));
+    //     this.setState({ toDashboard: true });
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+
+    await Axios.post(domain, { email, password })
+      .then(res => {
         this.setState({ toDashboard: true });
       })
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   render() {
     const register = `${process.env.REACT_APP_URL}/register`;
-    
+
     if (this.state.toDashboard === true) {
-      return(
-        <Redirect to="/" />
-      )
+      return <Redirect to="/" />;
     }
-    
+
     return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={useStyles.paper}>
-          <Avatar className={useStyles.avatar}>
-          </Avatar>
+          <Avatar className={useStyles.avatar}></Avatar>
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -102,9 +108,7 @@ class Login extends Component {
             </Button>
             <Grid container>
               <Grid item>
-                <a href={`${register}`}>
-                  Don't have an account? Sign Up
-                </a>
+                <a href={`${register}`}>Don't have an account? Sign Up</a>
               </Grid>
             </Grid>
           </form>
@@ -151,11 +155,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Giving access to the jwtToken piece-of-state within globalState to Login
-const mapStateToProps = state => {
-  return {
-    jwtToken: state.jwtToken
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     jwtToken: state.jwtToken
+//   };
+// };
 
 // No second argument (i.e. explicit mapDispatchToProps()) = dispatch() automatically added to this.props
-export default connect(mapStateToProps)(Login);
+// export default connect(mapStateToProps)(Login);
+export default Login;

@@ -8,8 +8,8 @@ import {
   Box
 } from "@material-ui/core";
 import axios from "axios";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+// import { connect } from "react-redux";
+// import { Redirect } from "react-router-dom";
 
 class EntryView extends Component {
   state = { entry: null };
@@ -17,12 +17,12 @@ class EntryView extends Component {
   async apiCall() {
     await axios
       .get(
-        `${process.env.REACT_APP_API_URL}/entries/${this.props.match.params.id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${this.props.jwtToken}`
-          }
-        }
+        `${process.env.REACT_APP_API_URL}/entries/${this.props.match.params.id}`
+        // {
+        //   headers: {
+        //     Authorization: `Bearer ${this.props.jwtToken}`
+        //   }
+        // }
       )
       .then(res => {
         this.setState({ entry: res.data });
@@ -37,9 +37,9 @@ class EntryView extends Component {
   }
 
   render() {
-    if (!this.props.jwtToken) {
-      return <Redirect to="/login" />;
-    }
+    // if (!this.props.jwtToken) {
+    //   return <Redirect to="/login" />;
+    // }
 
     if (!this.state.entry) {
       return <h1>Error - Could not connect to the database.</h1>;
@@ -119,10 +119,11 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-const mapStateToProps = state => {
-  return {
-    jwtToken: state.jwtToken
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     jwtToken: state.jwtToken
+//   };
+// };
 
-export default connect(mapStateToProps)(EntryView);
+// export default connect(mapStateToProps)(EntryView);
+export default EntryView;
