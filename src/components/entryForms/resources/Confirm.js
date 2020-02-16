@@ -15,28 +15,7 @@ class FormAdditionalDetails extends Component {
     event.preventDefault();
 
     const {
-      date,
-      startTime,
-      finishTime,
-      cropRow,
-      chemicalUsed,
-      whp,
-      ehd,
-      rateApplied,
-      quantityApplied,
-      image,
-      equipmentMethodUsed,
-      notes
-    } = this.props.values;
-
-    const {
-      speed,
-      deg
-    } = this.props;
-
-    const createUrl = `${process.env.REACT_APP_API_URL}/entries/`;
-
-    await Axios.post(createUrl, {
+      user,
       date,
       startTime,
       finishTime,
@@ -51,7 +30,29 @@ class FormAdditionalDetails extends Component {
       speed,
       deg,
       notes
-    })
+    } = this.props.values;
+
+    const createUrl = `${process.env.REACT_APP_API_URL}/entries/create`;
+    const submitValues = {
+      user,
+      date,
+      startTime,
+      finishTime,
+      cropRow,
+      chemicalUsed,
+      whp,
+      ehd,
+      rateApplied,
+      quantityApplied,
+      image,
+      equipmentMethodUsed,
+      speed,
+      deg,
+      notes
+    };
+    console.log(createUrl);
+    console.log(submitValues);
+    await Axios.post(createUrl, submitValues)
       .then(res => {
         console.log(res);
       })
@@ -69,6 +70,7 @@ class FormAdditionalDetails extends Component {
   render() {
     const {
       values: {
+        user,
         date,
         startTime,
         finishTime,
@@ -95,6 +97,9 @@ class FormAdditionalDetails extends Component {
             New Entry
           </Typography>
           <List>
+            <ListItem>
+              <ListItemText primary="User" secondary={user} />
+            </ListItem>
             <ListItem>
               <ListItemText primary="Date" secondary={date} />
             </ListItem>

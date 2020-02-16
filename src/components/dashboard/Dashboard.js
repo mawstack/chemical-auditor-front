@@ -10,16 +10,16 @@ import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import WeatherBlock from "./resources/WeatherBlock";
 import NavButton from "./resources/NavButton";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+// import { connect } from "react-redux";
+// import { Redirect } from "react-router-dom";
 
 class Dashboard extends Component {
   
   render() {
     const fixedHeightPaper = clsx(styles.paper, styles.fixedHeight);
-    if (!this.props.jwtToken) {
-      return <Redirect to="/login" />
-    }
+    // if (!this.props.jwtToken) {
+    //   return <Redirect to="/login" />
+    // }
 
     return (
       <div className={styles.root}>
@@ -145,10 +145,11 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-const mapStateToProps = (state) => {
-  return {
-    jwtToken: state.jwtToken
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     jwtToken: state.jwtToken
+//   }
+// }
 
-export default connect(mapStateToProps)(Dashboard);
+// export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

@@ -5,13 +5,14 @@ import Confirm from "./resources/Confirm";
 import Success from "./resources/Success";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+// import { connect } from "react-redux";
+// import { Redirect } from "react-router-dom";
 
 export class EntryForm extends Component {
   state = {
     // step == current step we are on
     step: 1,
+    user: "",
     date: null,
     startTime: null,
     finishTime: null,
@@ -32,11 +33,11 @@ export class EntryForm extends Component {
 
   async callAPI() {
     try {
-      await fetch(`${process.env.REACT_APP_API_URL}/entries/new`, {
-        headers: {
-          Authorization: `Bearer ${this.props.jwtToken}`
-        }
-      })
+      await fetch(`${process.env.REACT_APP_API_URL}/entries/new`
+        // headers: {
+        //   Authorization: `Bearer ${this.props.jwtToken}`
+        // }
+      )
         .then(res => res.text())
         .then(res =>
           this.setState({
@@ -127,6 +128,7 @@ export class EntryForm extends Component {
   render() {
     const {
       step,
+      user,
       date,
       startTime,
       finishTime,
@@ -145,6 +147,7 @@ export class EntryForm extends Component {
     } = this.state;
 
     const values = {
+      user,
       date,
       startTime,
       finishTime,
@@ -161,9 +164,9 @@ export class EntryForm extends Component {
       notes
     };
 
-    if (!this.props.jwtToken) {
-      return <Redirect to="/login" />;
-    }
+    // if (!this.props.jwtToken) {
+    //   return <Redirect to="/login" />;
+    // }
 
     if (deg) {
       switch (step) {
@@ -222,10 +225,11 @@ export class EntryForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    jwtToken: state.jwtToken
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     jwtToken: state.jwtToken
+//   };
+// };
 
-export default connect(mapStateToProps)(EntryForm);
+// export default connect(mapStateToProps)(EntryForm);
+export default EntryForm;

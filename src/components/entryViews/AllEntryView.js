@@ -12,8 +12,8 @@ import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
 import IconButton from "@material-ui/core/IconButton";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
-import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+// import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const StyledTableCell = withStyles(theme => ({
   head: {
@@ -61,16 +61,17 @@ class AllEntryView extends Component {
 
   async apiCall() {
     await axios
-      .get(`${process.env.REACT_APP_API_URL}/entries`, {
-        headers: {
-          Authorization:
-            `Bearer ${this.props.jwtToken}`
-        }
-      })
+      .get(
+        `${process.env.REACT_APP_API_URL}/entries`
+        // headers: {
+        //   Authorization:
+        //     `Bearer ${this.props.jwtToken}`
+        // }
+      )
       .then(res => {
-        res.data.map((entry) => {
-          return entry["link"] = `entries/${entry["_id"]}`;
-        })
+        res.data.map(entry => {
+          return (entry["link"] = `entries/${entry["_id"]}`);
+        });
         this.setState({ rows: res.data });
       })
       .catch(err => {
@@ -83,17 +84,20 @@ class AllEntryView extends Component {
   }
 
   render() {
-
-    if (!this.props.jwtToken) {
-      return <Redirect to="/login" />
-    }
+    // if (!this.props.jwtToken) {
+    //   return <Redirect to="/login" />
+    // }
 
     const { rows } = this.state;
 
     return (
       <>
         <TableContainer component={Paper}>
-          <Table className={styles.table} size="small" aria-label="a dense table">
+          <Table
+            className={styles.table}
+            size="small"
+            aria-label="a dense table"
+          >
             <TableHead>
               <TableRow>
                 <StyledTableCell align="right">View Entry</StyledTableCell>
@@ -106,8 +110,12 @@ class AllEntryView extends Component {
                 <StyledTableCell align="right">WHP</StyledTableCell>
                 <StyledTableCell align="right">EHD</StyledTableCell>
                 <StyledTableCell align="right">Rate applied</StyledTableCell>
-                <StyledTableCell align="right">Quantity applied</StyledTableCell>
-                <StyledTableCell align="right">Equipment method used</StyledTableCell>
+                <StyledTableCell align="right">
+                  Quantity applied
+                </StyledTableCell>
+                <StyledTableCell align="right">
+                  Equipment method used
+                </StyledTableCell>
                 <StyledTableCell align="right">Wind speed</StyledTableCell>
                 <StyledTableCell align="right">Wind direction</StyledTableCell>
                 <StyledTableCell align="right">Notes</StyledTableCell>
@@ -121,9 +129,7 @@ class AllEntryView extends Component {
                     <Link to={row.link}>Link</Link>
                   </StyledTableCell>
 
-                  <StyledTableCell align="right">
-                    {row.user}
-                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.user}</StyledTableCell>
 
                   <StyledTableCell component="th" scope="row">
                     {row.date}
@@ -137,21 +143,15 @@ class AllEntryView extends Component {
                     {row.finishTime}
                   </StyledTableCell>
 
-                  <StyledTableCell align="right">
-                    {row.cropRow}
-                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.cropRow}</StyledTableCell>
 
                   <StyledTableCell align="right">
                     {row.chemicalUsed}
                   </StyledTableCell>
 
-                  <StyledTableCell align="right">
-                    {row.whp}
-                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.whp}</StyledTableCell>
 
-                  <StyledTableCell align="right">
-                    {row.ehd}
-                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.ehd}</StyledTableCell>
 
                   <StyledTableCell align="right">
                     {row.rateApplied}
@@ -165,13 +165,9 @@ class AllEntryView extends Component {
                     {row.equipmentMethodUsed}
                   </StyledTableCell>
 
-                  <StyledTableCell align="right">
-                    {row.speed}
-                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.speed}</StyledTableCell>
 
-                  <StyledTableCell align="right">
-                    {row.deg}
-                  </StyledTableCell>
+                  <StyledTableCell align="right">{row.deg}</StyledTableCell>
 
                   <StyledTableCell align="right">
                     {row.notes}
@@ -201,10 +197,11 @@ class AllEntryView extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    jwtToken: state.jwtToken
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     jwtToken: state.jwtToken
+//   }
+// }
 
-export default connect(mapStateToProps)(AllEntryView);
+// export default connect(mapStateToProps)(AllEntryView);
+export default AllEntryView;

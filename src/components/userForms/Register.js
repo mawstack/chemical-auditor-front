@@ -9,10 +9,10 @@ import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import allowCookiesAxios from "./../../apis/allowCookiesAxios";
-import { connect } from "react-redux";
-import { setJwtToken } from "./../../actions/index";
-import cookie from "js-cookie";
+import Axios from "axios";
+// import { connect } from "react-redux";
+// import { setJwtToken } from "./../../actions/index";
+// import cookie from "js-cookie";
 import { Redirect } from "react-router-dom";
 
 export class Register extends Component {
@@ -36,16 +36,25 @@ export class Register extends Component {
     const registerURL = `${process.env.REACT_APP_API_URL}/users/register`;
 
     if (this.state.password === this.state.repeatPassword) {
-      await allowCookiesAxios
-        .post(registerURL, { email, username, password })
+      // await allowCookiesAxios
+      //   .post(registerURL, { email, username, password })
+      //   .then(res => {
+      //     const jwtToken = cookie.get("jwtToken");
+      //     this.props.dispatch(setJwtToken(jwtToken));
+      //     this.setState({ toDashboard: true });
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
+
+      await Axios.post(registerURL, { email, username, password })
         .then(res => {
-          const jwtToken = cookie.get("jwtToken");
-          this.props.dispatch(setJwtToken(jwtToken));
           this.setState({ toDashboard: true });
         })
         .catch(err => {
           console.log(err);
         });
+
       this.setState({
         email: "",
         name: "",
@@ -96,9 +105,7 @@ export class Register extends Component {
 
   render() {
     if (this.state.toDashboard === true) {
-      return(
-        <Redirect to="/" />
-      )
+      return <Redirect to="/" />;
     }
 
     return (
@@ -206,11 +213,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // Giving access to the jwtToken piece-of-state within globalState to Login
-const mapStateToProps = state => {
-  return {
-    jwtToken: state.jwtToken
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//     jwtToken: state.jwtToken
+//   };
+// };
 
 // No second argument (i.e. explicit mapDispatchToProps()) = dispatch() automatically added to this.props
-export default connect(mapStateToProps)(Register);
+// export default connect(mapStateToProps)(Register);
+export default Register;
